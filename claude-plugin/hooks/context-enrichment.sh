@@ -42,6 +42,7 @@ stopwords = {
     'good','great','does','dont','cant','wont','tell','show','find','work',
     'please','claude','search','query','prompt','question','answer',
     'mapbox','search','product','team','feature','build','write','update',
+    'thing','things','stuff','today','yesterday','tomorrow','later','recently',
 }
 
 seen = set()
@@ -75,11 +76,12 @@ QUERY1="$TERMS"
 QUERY2=$(echo "$TERMS" | awk '{print $1, $2, $3}')  # first 3 terms only
 
 # Run searches sequentially (each <0.3s, total well under 2s budget)
-RESULTS1=$("$QMD" search "$QUERY1" 2>/dev/null | grep -v "sqlite-vec" | head -30)
-RESULTS2=$("$QMD" search "$QUERY2" 2>/dev/null | grep -v "sqlite-vec" | head -20)
+# Filter out qmd's "No results found." message — it's not useful context.
+RESULTS1=$("$QMD" search "$QUERY1" 2>/dev/null | grep -v "sqlite-vec" | grep -vF "No results found." | head -30)
+RESULTS2=$("$QMD" search "$QUERY2" 2>/dev/null | grep -v "sqlite-vec" | grep -vF "No results found." | head -20)
 
 # Combine and deduplicate
-COMBINED=$(printf '%s\n%s\n' "$RESULTS1" "$RESULTS2" | awk '!seen[$0]++')
+COMBINED=$(printf '%s\n%s\n' "$RESULTS1" "$RESULTS2" | awk 'NF && !seen[$0]++')
 
 if [ -z "$COMBINED" ]; then
   exit 0
