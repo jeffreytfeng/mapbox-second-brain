@@ -9,8 +9,6 @@ A personal context-aware knowledge assistant that runs in Claude Code. Built by 
 - **A UserPromptSubmit hook** that searches your KB on every prompt and injects relevant snippets so Claude has context without you having to paste it
 - **An auto-memory system** that captures preferences, gotchas, and project facts across sessions
 
-The morning brief runs as a **remote cloud routine** (via Claude Code's `/schedule`), not a local cron job. The local cron approach can't access Calendar/Gmail/Slack — only a Claude session can.
-
 ## Before you start
 
 Add the four MCP connectors at [claude.ai/customize/connectors](https://claude.ai/customize/connectors):
