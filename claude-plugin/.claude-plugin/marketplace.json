@@ -1,0 +1,13 @@
+{
+  "name": "mapbox-second-brain",
+  "owner": {
+    "name": "Mapbox"
+  },
+  "plugins": [
+    {
+      "name": "second-brain",
+      "description": "Personal context-aware knowledge assistant for Mapbox PMs and beyond",
+      "source": "."
+    }
+  ]
+}

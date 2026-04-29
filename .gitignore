@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Backups
+*.bak
+
+# Local-only state (in case anyone develops/tests inside this repo)
+.claude/
+node_modules/
