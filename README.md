@@ -1,6 +1,6 @@
 # Mapbox Second Brain
 
-A personal context-aware knowledge assistant that runs in Claude Code. Built by [@jeffreytfeng](https://github.com/jeffreytfeng) and shared with Mapbox colleagues. It keeps you in context across all your projects by syncing Gmail, Google Calendar, Google Drive, and Slack into a searchable local KB, then injecting relevant pieces into every Claude Code prompt.
+A personal context-aware knowledge assistant that runs in Claude Code. Built by [@jeffreytfeng](https://github.com/jeffreytfeng) and shared with Mapbox colleagues. It keeps you in context across all your projects by syncing Gmail, Google Calendar, Google Drive, and Slack into a searchable local Knowledge Base, and then providing relevant context into every Claude Code or Claude Co-Work prompt.
 
 ## What you get
 
