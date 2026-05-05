@@ -1,6 +1,6 @@
 {
   "name": "second-brain",
-  "description": "Context-aware knowledge assistant skills (/update, /learn, /sync, /retro, /morning-brief, /my-voice, /meeting-prep, /weekly-update, /draft-prd-section, /draft-prfaq-section, /synthesize-research, /strategy-doc-review) plus a UserPromptSubmit hook that injects KB search results into every prompt.",
+  "description": "Context-aware knowledge assistant skills (/update, /learn, /sync, /retro, /morning-brief, /my-voice, /meeting-prep, /weekly-update, /draft-prd-section, /draft-prfaq-section, /synthesize-research, /strategy-doc-review, /cherie-reviewer) plus a UserPromptSubmit hook that injects KB search results into every prompt.",
   "author": {
     "name": "Mapbox"
   }
