@@ -11,6 +11,8 @@ Write or sharpen a specific section of a PRFAQ following the Mapbox PRFAQ standa
 
 ## What is a Mapbox PRFAQ?
 
+The PRFAQ is rooted in Amazon's [Working Backwards](https://www.amazon.com/Working-Backwards-Insights-Stories-Secrets/dp/1250267595) methodology: write the customer experience first, then build. The PR is a design tool that forces precision about what matters to the customer, and the FAQ surfaces every hard question before engineering starts.
+
 A Mapbox PRFAQ is **6 pages max** with four parts, in this order:
 
 1. **Introduction** — pre-meeting framing with the explicit Cherie ask, launch size, and the business metric being moved.
@@ -53,7 +55,27 @@ If no section is specified, ask which section the user wants help with.
 - Search Google Drive (`mcp__claude_ai_Google_Drive__search_files`) for relevant meeting notes, research, or existing PRFAQ drafts; fall back to `Raw/` if Drive MCP is unavailable.
 - Check `Knowledge/People/` for stakeholder perspectives that should be reflected — especially Cherie Wong and Anu Sharma (the approvers).
 - Look for: customer pain points, named customer quotes, business-metric baselines, competitive signals, hard constraints, pricing precedent.
-- Reference example: `1rMSMGrtJ5MGXgYv_ExWZ7rzHyOeZPsco9P2jM5wmZb4` (MTS Incremental Updates PRFAQ).
+- Reference examples (use to calibrate tone, depth, and format):
+  - `1rMSMGrtJ5MGXgYv_ExWZ7rzHyOeZPsco9P2jM5wmZb4` — MTS Incremental Updates PRFAQ.
+  - `17QCxYxQRnAerjgU-n5maPTVhEmkEVMagxgQci-sYjjY` — Mapbox Fleet PRFAQ (broader-scope example).
+  - [BMW Navigation SDK launch press release](https://www.businesswire.com/news/home/20201214005607/en/Mapbox-Launches-Navigation-SDK-for-Automotive-BMW-Group-Launch-Partner) — published example to model the press release tone against.
+
+#### Pre-write prep checklist (especially for the press release)
+
+Before drafting any PR section, work through these 12 questions. The answers won't all appear in the PR — but if any answer is missing, the PR will read soft. Capture answers in scratch space; the PR is a concise document that earns time with a customer or reporter, like a resume earns an interview.
+
+1. Is this a new product or significant functionality added to an existing product?
+2. Describe the challenge this product or new functionality addresses.
+3. What are the use cases in which developers (or other named personas) encounter these challenges?
+4. What business impact does the challenge create?
+5. How does the new product or functionality address the challenge?
+6. What business value does it create (e.g. faster service, increased revenue, lower COGS)?
+7. Who are the competitors and what is their product? *(Internal-only context — competitor names stay out of the PR and E-FAQ.)*
+8. How is the Mapbox product different? Is Mapbox better — and on which dimension specifically?
+9. Which customers are using the new product? How are they using it?
+10. Is there a customer to quote, and what is their statement about the product's value? If no real customer is on record yet, the synthetic quote drafted in I-FAQ Q13 fills this slot.
+11. How much will the product cost?
+12. When is the product available?
 
 ### Step 2b: Apply voice profile
 
@@ -80,6 +102,15 @@ Keep the introduction tight — it exists so reviewers don't have to ask these q
 
 #### PRESS RELEASE (6 paragraphs — strict structure)
 
+The press release has four named structural elements wrapping the body paragraphs. Each one does a specific job:
+
+- **Head** — the title. Appears in the wire summary feed (e.g. BusinessWire). Plain English, no jargon, journalist-usable.
+- **Deck** — the subhead. Does not appear in the wire summary; sets up the lede for readers who clicked through. One sentence: who it's for, what specific outcome it delivers.
+- **Dateline** — `CITY, STATE — Date —` opens the body. Standard wire convention.
+- **Boilerplate** — `ABOUT MAPBOX®` block at the end. Use the latest official copy; do not paraphrase.
+
+Write the body in **present tense as if the product already exists** — not "we will be implementing X," but "the API includes X." This is a Mapbox PRFAQ rule and it carries through to the External FAQ.
+
 Compress if you can convey the substance in less, but cover all six beats in this order:
 
 **¶1 — Announcement.** What we're announcing. Headline first, then 3–4 sentences as a journalist would lede: who, what, headline benefit. Format the headline `[City, Date] — Mapbox — [What it does in plain English]`. No jargon a smart non-expert wouldn't understand.
@@ -100,7 +131,24 @@ Compress if you can convey the substance in less, but cover all six beats in thi
 
 #### EXTERNAL FAQ (E-FAQ) — customer-facing, comes first
 
-The E-FAQ answers questions a real customer would have after reading the press release. The Mapbox template requires these questions in this order:
+The E-FAQ answers questions a real customer would have after reading the press release. **The E-FAQ gets published on the product page** — it carries SEO weight and establishes Mapbox as an authority on the topic. As a rule of thumb, the E-FAQ should have **more total content than the I-FAQ**: most details a Mapbox employee wants to know are also useful to customers; only the small handful of confidential or strategic details stay internal.
+
+**Voice rule (genre exception to the no-pejorative-"you" rule in Step 4):** the FAQ format is customer dialogue, so:
+
+- Write questions in **first person**, as the customer would actually ask them. ✅ "How do I get access to the Modular Maps SDK?" — ❌ "How do developers get access to the Modular Maps SDK?"
+- Answers may use "you" (e.g. "You can access...") since the format is a Q&A dialogue. This is the only place in a PRFAQ where the no-pejorative-"you" rule yields.
+- Use plain language — the words a customer would actually use, not internal terminology.
+
+**Tense:** present tense, even for capabilities that aren't built yet. Write "the Styles API includes a GraphQL API you can use to query all styles in your account," not "we will be implementing GraphQL support."
+
+**Question-shape pattern:** where it fits, write yes/no questions and then expand. This forces clarity and gives the customer a clean signal:
+
+> Q: Does the product address use case A?
+> A: Yes. You can accomplish this with X, Y, Z features. Here is a code snippet that addresses use case A.
+
+**Concrete over abstract:** answers should be specific. If an answer is ambiguous, that's usually a signal of an unresolved product decision, not a writing problem. Frame answers around customer use cases, not internal mechanics — code snippets and example calls are good when they illustrate a use case.
+
+The Mapbox template requires these questions in this order:
 
 1. **What are we launching today?** — Define the feature in plain English.
 2. **What can I do now that I couldn't do before?** — Two paragraphs:
@@ -291,9 +339,12 @@ Before delivering a draft, check:
 **Approval-readiness**
 
 - [ ] PRFAQ is being scheduled at least **3 months before launch.**
+- [ ] **Manager + service-organization leader have reviewed** before the formal review meeting — they catch the questions internal and external stakeholders will ask.
+- [ ] **Legal team review (Laurel Finch) has happened** before the PRFAQ Review Meeting — Legal is engaged at the PRFAQ stage, not after, and their review covers the new feature/product before coding starts.
 - [ ] Cherie + Anu are on the review invite.
 - [ ] Engineers and product marketers have reviewed before the meeting.
 - [ ] If pricing is non-free, the separate Pricing doc is drafted (or scheduled for the 1-month-pre-launch pricing review).
+- [ ] After approval, the plan is to engage Product Marketing for the product introduction plan within the same week.
 
 ---
 
@@ -304,6 +355,9 @@ Before delivering a draft, check:
 - If you can't write a compelling press release, the product strategy is weak — not the writing. Treat a weak PR as a signal to go back to the customer problem.
 - The PR is a design tool, not marketing copy. It forces precision about what matters to the customer.
 - The PRFAQ is a living document. Keep updating it through preview as customer learnings come in.
-- After PRFAQ approval, open Legal, Security, and Billing tickets within one week.
+- **Legal review happens at the PRFAQ stage**, before coding starts — not after the PRFAQ is approved. Loop in Laurel Finch (Legal) before the formal review meeting with Cherie and Anu.
+- **Pre-review path:** PM → manager → service organization leader → Legal (Laurel) → PRFAQ Review Meeting (Cherie + Anu, plus Service / Marketing / Finance / Customer Engagement stakeholders). After approval, engage Product Marketing immediately to start the product introduction plan.
+- After PRFAQ approval, open Legal-followup, Security, and Billing tickets within one week.
 - For Medium/Large launches, prepare a "Customer Facing PRFAQ Version" (PDF with confidential footer) for preview testing.
-- Reference example PRFAQ: MTS Incremental Updates (Drive ID `1rMSMGrtJ5MGXgYv_ExWZ7rzHyOeZPsco9P2jM5wmZb4`).
+- Reference example PRFAQs: MTS Incremental Updates (`1rMSMGrtJ5MGXgYv_ExWZ7rzHyOeZPsco9P2jM5wmZb4`) and Mapbox Fleet (`17QCxYxQRnAerjgU-n5maPTVhEmkEVMagxgQci-sYjjY`).
+- **Reference published press release:** [Mapbox + BMW Navigation SDK launch](https://www.businesswire.com/news/home/20201214005607/en/Mapbox-Launches-Navigation-SDK-for-Automotive-BMW-Group-Launch-Partner) — model your PR tone against this.
