@@ -1,5 +1,5 @@
 ---
-name: draft-prd-section
+name: prd-write
 description: Write a specific PRD section grounded in project research and goals
 argument-hint: "[section-name] [project-path]"
 user-invocable: true
