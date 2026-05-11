@@ -9,7 +9,7 @@ HOW TO POPULATE:
 Run `/my-voice` after the system has access to at least a few of your real writing samples
 (Drive docs, sent emails, Slack messages). The skill will analyze 8+ samples across at least
 2 channels and produce a tone/structure/formatting profile that other skills (weekly-update,
-draft-prfaq-section, prd-write, meeting-prep, morning-brief, synthesize-research)
+prfaq-write, prd-write, meeting-prep, morning-brief, synthesize-research)
 read to make their output sound like you wrote it.
 
 Until /my-voice runs successfully, skills that depend on this file will fall back to a
