@@ -10,6 +10,39 @@ When invoked, review this conversation and extract what's worth keeping for futu
 
 ## What to do
 
+### Step 0: Pre-flight — staleness sweep + profile consolidation auto-trigger
+
+Before adding new memories, sweep for stale ones and trigger profile consolidation if any profile is overdue. This step prevents the memory system from monotonically growing.
+
+#### 0a. Memory staleness sweep
+
+MEMORY.md is already loaded into context (auto-loaded per CLAUDE.md). Scan its index entries against what surfaced in this session:
+
+- **Did this session contradict any existing memory?** E.g. a file/repo/path the memory references was deleted; a person's role or cadence changed; a decision was reversed; a workflow was retired.
+- **Did this session reveal a memory is now incomplete or generalizable?** E.g. a feedback memory about Tool A now also applies to Tool B; a project memory needs a new sub-bullet.
+
+Compile a **candidate list** of memories to update, remove, or merge. **Do not auto-delete or auto-edit** — the user has sometimes wanted to keep a memory whose fact is stale because the *pattern* is still useful. Surface the candidates in the Step 6 report with the contradiction quoted, and ask the user to confirm each one before changing anything.
+
+#### 0b. Profile consolidation auto-trigger
+
+Read `Knowledge/People/.consolidation-log.md` (one line per person: `<name>: <last-consolidated-YYYY-MM-DD>`; create the file if it doesn't exist with a one-line header).
+
+For each profile in `Knowledge/People/*.md` (skip `_archive/` and any hidden files):
+
+1. Look up the last-consolidated date in the log. No entry = never consolidated.
+2. Count `## YYYY-MM-DD Update` sections in the profile whose date is **newer than the last-consolidated date** (or all of them, if never consolidated).
+3. **Trigger condition:** days-since-last-consolidation ≥ 30 AND new-dated-updates-since-last ≥ 1.
+
+For each profile that meets the trigger condition, invoke the `consolidate-profile` skill with the person's slug as the argument. The skill handles the consolidation itself, archives raw bullets, and stamps the log.
+
+If a profile is ≥30 days stale but has **no new dated-update sections**, just touch the log entry to today (no-op consolidation) so we don't re-check it until 30 more days pass.
+
+Surface each consolidation that ran in the Step 6 report (which people, how many updates rolled in, what archive entries were written).
+
+If `Knowledge/People/` doesn't exist in this project, skip 0b silently — this auto-trigger only applies to second-brain-shaped projects.
+
+---
+
 ### Step 1: Review the conversation
 Scan the full session for:
 - **Mistakes I made** — wrong assumptions, commands that failed, directions that had to be corrected
@@ -140,6 +173,30 @@ Tell the user:
 - What you chose NOT to save and why
 - Whether the Google Drive context doc was updated (include the file ID)
 - Any gaps you noticed that they should fill in
+
+#### Memories that shaped this session
+
+List the memory entries from `MEMORY.md` that actively informed behavior during this conversation — the ones that, had they been absent, would have changed how the session went. Format:
+
+- `<memory-file-name>` — one sentence on how it applied this session.
+
+Skip memories that were loaded but didn't fire. The goal is to surface which memories are load-bearing vs decorative, so over time the user can see which to keep, promote, or archive.
+
+If no memories meaningfully shaped the session, say so explicitly (one line: "No memory entries shaped this session — pure forward work").
+
+#### Stale memories flagged (from Step 0a)
+
+List the candidate updates/removals from the staleness sweep. For each:
+
+- `<memory-file-name>` — what's contradicted/stale and one-sentence proposed action (update / remove / merge into <other-file>).
+
+Wait for the user's confirmation before editing — do not auto-apply the proposed actions.
+
+#### Profile consolidations triggered (from Step 0b)
+
+If `/consolidate-profile` was invoked for any profile, list:
+
+- `<person-slug>` — N dated updates rolled in (date range); archive written to `_archive/<person-slug>-updates.md`; canonical sections updated: <list>.
 
 ## What NOT to do
 - Don't save every fact from the conversation — only what changes future behavior
