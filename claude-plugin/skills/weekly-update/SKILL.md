@@ -17,7 +17,7 @@ Draft a stakeholder update email using the weekly-update template.
    - If a project tracker MCP (Linear, Jira, etc.) is connected: fetch recently completed, in progress, and blocked issues
 
 2. **Check Stakeholder Preferences**
-   - Check `People/` for stakeholder preferences or `Drafts/` for past weekly updates for tone and continuity
+   - Check `Knowledge/People/` for stakeholder preferences or `Drafts/` for past weekly updates for tone and continuity
 
 3. **Assess Status**
    - Compare progress against milestones
