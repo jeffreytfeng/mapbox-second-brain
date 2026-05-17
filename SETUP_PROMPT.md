@@ -69,7 +69,7 @@ The hook is already installed. Test it:
 Walk me through each skill once so I know what they do:
 
 - `/sync` — runs `/update` then `/learn` in sequence. End-of-day command.
-- `/learn` — captures conversation insights to `~/.claude/projects/-Users-<username>-Documents-second-brain/memory/`, updates `Knowledge/People/` profiles for anyone mentioned, and **pushes a fresh `<my-name> — Second Brain Context (Morning Brief)` doc to Google Drive**. That Drive doc is the bridge that lets the cloud morning-brief agent read my KB — it has no local filesystem access. If `/learn` Step 5 stops running, the morning brief goes stale.
+- `/learn` — captures conversation insights to `~/.claude/projects/-Users-<username>-Documents-second-brain/memory/`, updates `Knowledge/People/` profiles for anyone mentioned and `Knowledge/Customers/` profiles for any customer context that surfaced, and **pushes a fresh `<my-name> — Second Brain Context (Morning Brief)` doc to Google Drive**. That Drive doc is the bridge that lets the cloud morning-brief agent read my KB — it has no local filesystem access. If `/learn` Step 5 stops running, the morning brief goes stale.
 - `/retro` — monthly reflection. Don't run today; just show me where it lives.
 
 Show me `~/.claude/projects/-Users-<username>-Documents-second-brain/memory/MEMORY.md`. Auto-memory grows here over time. The index file is loaded into every session.
