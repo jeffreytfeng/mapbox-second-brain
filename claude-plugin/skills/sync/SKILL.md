@@ -46,6 +46,7 @@ Output a single summary covering both:
 - Drive: N files exported/updated
 - Gmail: N threads summarized
 - Slack: N threads summarized, from N channels
+- Customers: N profiles updated, N net-new profiles created
 - Tasks: N new items, N status updates
 - KB: indexed N new, N updated
 

@@ -72,6 +72,7 @@ Save it if:
 | Type of context | Where it goes |
 |-----------------|---------------|
 | Individual person (goals, working style, relationship update, new ask) | `Knowledge/People/<person>.md` |
+| Individual customer (contract details, contacts, product usage, escalations, recent history) | `Knowledge/Customers/<customer>.md` |
 | Org-level dynamics, customer table, cross-functional relationships | `Knowledge/Context/team-context.md` |
 | Strategic direction, product bets, competitive position | `Knowledge/Context/strategic-context.md` |
 | The user's role, deliverables, reporting relationships | `Knowledge/Context/role-context.md` |
@@ -143,6 +144,31 @@ Profile update format — append a dated section at the bottom of the file:
 ```
 
 **Do not** update `Knowledge/Context/team-context.md` with individual person detail — that file is an index only.
+
+### Step 3c: Update Customer profiles
+
+Check `~/Documents/second-brain/Knowledge/Customers/` for any customer mentioned in this session.
+
+For each customer where new context emerged:
+1. Read their existing profile (`Knowledge/Customers/<customer>.md`)
+2. Append a dated update section with what's new — don't overwrite existing content:
+   ```markdown
+   ## YYYY-MM-DD Update
+   - [bullet: new context]
+   ```
+3. If no profile exists yet and it's a recurring or strategic account: create one from `_template.md`
+
+What's worth adding:
+- New product requests or pain points
+- Contract changes, expansion signals, or churn risk
+- Escalations or relationship changes
+- Decisions the customer made or commitments they gave
+- Key contacts that changed or were newly identified
+
+What to skip:
+- Passing mentions with no new information
+- Things already in the profile
+- One-off logistics
 
 ### Step 4: Update ~/.claude/CLAUDE.md if needed
 Only add entries for persistent tool gotchas or workflow rules that apply across all projects, not just this one. Keep it short.

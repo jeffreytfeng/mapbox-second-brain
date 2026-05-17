@@ -121,6 +121,49 @@ Group by channel. Merge short related messages into one entry.
 
 ---
 
+## Step 3.5: Update customer profiles in Knowledge/Customers/
+
+### 3.5a. Identify existing customer profiles
+
+List all `.md` files in `~/Documents/second-brain/Knowledge/Customers/`, excluding `_template.md`. These are the known customers to scan for in exported content.
+
+### 3.5b. Scan exported content for customer mentions
+
+For each file written in Steps 1–3, check for mentions of:
+- Each known customer (from 3.5a)
+- Any company name appearing ≥2 times in customer-facing contexts (OEM deal, integration partner, enterprise contract, customer escalation, ARR/revenue mention)
+
+**Do not create profiles for:** Mapbox colleagues, one-time event attendees, vendors/suppliers, tool providers (e.g. AWS, Slack, Google), or companies that only appear in passing references.
+
+### 3.5c. Update profiles for known customers
+
+For each known customer that appears in the exported content:
+1. Read their existing profile (`Knowledge/Customers/<customer>.md`)
+2. Identify what's new — new contacts, product requests, contract changes, escalations, timeline updates
+3. Append a dated update section at the bottom:
+   ```markdown
+   ## YYYY-MM-DD Update
+   *Source: [gmail-digest / slack-digest / drive doc name]*
+   - [bullet: new context]
+   ```
+4. If any Quick Facts or Key Contacts fields are still blank, populate them from the new content
+5. Update the `*Last updated:*` line to the current date/time
+
+### 3.5d. Create profiles for net-new companies
+
+For each net-new company that meets the ≥2 appearance threshold:
+1. Copy `_template.md` to `Knowledge/Customers/<slug>.md` (lowercase, hyphens for spaces)
+2. Fill in whatever Quick Facts are available from the content
+3. Add a discovery update section:
+   ```markdown
+   ## YYYY-MM-DD Update
+   *Source: auto-discovered from [gmail-digest / slack-digest / drive doc]*
+   - First appeared in: [brief context of where/how they showed up]
+   ```
+4. Do NOT fabricate fields — leave blanks as-is if data is absent
+
+---
+
 ## Step 4: Update tasks in Tasks/active.md
 
 Read `~/Documents/second-brain/Tasks/active.md`.
@@ -181,6 +224,7 @@ Tell the user:
 - **Google Drive:** N files exported or updated (list titles)
 - **Gmail:** N threads summarized (date range covered)
 - **Slack:** N threads summarized, from which channels
+- **Customers:** N profiles updated, N net-new profiles created (list names)
 - **Tasks:** N new items added, N status updates made
 - **Skipped:** anything relevant that was excluded and why
 - **KB status:** whether indexing succeeded or was skipped

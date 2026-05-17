@@ -22,7 +22,8 @@ This system designed to work with Claude Code:
 - **`.claude/skills/`** Holds on-demand skills 
 - **`Knowledge/Context/`** - Holds all the context about me, my responsibilities, goals, team strategy, decisions, and personal growth
 - **`Knowledge/People/`** - Context on stakeholders I work with and the dynamic
-- **`Knowledge/Reference/`** - Mapbox company & product context
+- **`Knowledge/Customers/`** - Context on the customers I work with — one `.md` file per customer (business context, key contacts, product usage, dated update log). Updated automatically on every `/sync`, `/learn`, and `/update` run
+- **`Knowledge/Reference/`** - Company & product context
 - **`Raw/`** - Synced cache for Google Workspace & Slack content
 - **`Tasks/`** - Active work and backlog items
 - **`Templates/`** - Reusable document templates
@@ -39,7 +40,8 @@ This system designed to work with Claude Code:
 
 ## Behavioral Rules
 
-- Always check the files in `Context/`, the files in `People/`, and `me.md` before answering questions
+- Always check the files in `Context/`, the files in `People/`, the files in `Customers/`, and `me.md` before answering questions
+- When a question involves a specific customer, integration partner, or enterprise account, check their file in `Customers/` first
 - Prefer structured output: bullets, tables, and short summaries over long prose
 - When referencing a decision, include the date, source (doc/chat/meeting), and who made it
 - Never fabricate information about project status — if context is stale or missing, say so
