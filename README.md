@@ -4,7 +4,7 @@ A personal context-aware knowledge assistant that runs in Claude Code. Built by 
 
 ## What you get
 
-- **A KB skeleton** at `~/Documents/second-brain/` (`Knowledge/Context/` for your role + goals, `Knowledge/People/` for stakeholders, `Knowledge/Reference/` with Mapbox company + product context, `Raw/` as the synced source-of-truth cache, `Tasks/` for active work, `Templates/` for reusable PM docs)
+- **A KB skeleton** at `~/Documents/second-brain/` (`Knowledge/Context/` for your role + goals, `Knowledge/People/` for stakeholders, `Knowledge/Customers/` for customer accounts — one `.md` per customer, auto-updated on every sync, `Knowledge/Reference/` with Mapbox company + product context, `Raw/` as the synced source-of-truth cache, `Tasks/` for active work, `Templates/` for reusable PM docs)
 - **13 skills** packaged as a local Claude Code plugin: `/update`, `/learn`, `/sync`, `/retro`, `/morning-brief`, `/my-voice`, `/meeting-prep`, `/weekly-update`, `/prd-write`, `/prfaq-write`, `/synthesize-research`, `/strategy-doc-review`, `/cherie-reviewer` (pressure-test OP/strategy docs against Cherie Wong's review gates before sharing)
 - **A UserPromptSubmit hook** that searches your KB on every prompt and injects relevant snippets so Claude has context without you having to paste it
 - **An auto-memory system** that captures preferences, gotchas, and project facts across sessions
@@ -60,6 +60,7 @@ mapbox-second-brain/
 │   ├── Knowledge/
 │   │   ├── Context/      # stub files — your role, goals, growth edges
 │   │   ├── People/       # one .md per stakeholder
+│   │   ├── Customers/    # one .md per customer account; auto-updated on /sync + /learn + /update
 │   │   └── Reference/    # Mapbox company + product context (verbatim)
 │   ├── Raw/              # synced source-of-truth cache
 │   ├── Tasks/

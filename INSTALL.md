@@ -38,6 +38,8 @@ Verify:
 ```bash
 ls ~/Documents/second-brain
 # Expect: CLAUDE.md  Knowledge/  Raw/  Tasks/  Templates/
+ls ~/Documents/second-brain/Knowledge
+# Expect: Context/  Customers/  People/  Reference/
 ```
 
 ---

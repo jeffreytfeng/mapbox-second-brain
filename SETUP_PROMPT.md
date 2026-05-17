@@ -8,7 +8,7 @@ Your job is to walk me through customizing it — interview me, build my profile
 
 Sanity check before we start. Run these and report what's missing:
 
-1. `ls ~/Documents/second-brain/` — confirm `Knowledge/`, `Raw/`, `Tasks/`, `Templates/`, `CLAUDE.md`
+1. `ls ~/Documents/second-brain/` — confirm `Knowledge/`, `Raw/`, `Tasks/`, `Templates/`, `CLAUDE.md`; inside `Knowledge/` confirm `Context/`, `People/`, `Customers/`, `Reference/`
 2. `ls ~/.claude/plugins/local/mapbox-second-brain/` — confirm `skills/` and `hooks/`
 3. Check `~/.claude/settings.json` — confirm the `mapbox-second-brain` marketplace and `second-brain` plugin are enabled
 4. Check `~/.claude/settings.local.json` — confirm a UserPromptSubmit hook pointing at `~/.claude/hooks/context-enrichment.sh` is registered
@@ -53,6 +53,8 @@ For each `Context/*.md` stub, search the KB extensively (10+ queries mixing keyw
 6. `team-context.md` — **INDEX ONLY** — bulleted list of links to `Knowledge/People/<person>.md`. Do NOT put person-level detail here.
 
 Then `Knowledge/People/<person>.md` — one file per stakeholder I named in Phase 1 plus anyone who appears in 3+ KB results. Use `Knowledge/People/README.md` for format. Always attempt a LinkedIn lookup for new profiles (`site:linkedin.com "Name" <company>`); skip the URL if confidence is low.
+
+Then `Knowledge/Customers/<customer>.md` — one file per key account or OEM customer that appeared in the synced KB content. Use `Knowledge/Customers/_template.md` for the format. The `/update` skill (Step 3.5) will auto-populate these on every sync run; create profiles manually here for any strategic accounts that are already known.
 
 ## Phase 4: Validate the context-enrichment hook
 
