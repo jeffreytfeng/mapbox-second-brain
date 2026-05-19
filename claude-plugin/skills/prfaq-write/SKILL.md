@@ -1,13 +1,13 @@
 ---
 name: prfaq-write
-description: Write a specific PRFAQ section using Mapbox's PRFAQ standard (Working Backwards adapted for Mapbox)
-argument-hint: "[section] [product-or-topic]  — section: intro | pr | efaq | ifaq | headline | problem | solution | quote | journey"
+description: Write a specific PRFAQ section using Mapbox's PRFAQ standard (Working Backwards adapted for Mapbox), or critique a draft for weak claims, logical gaps, and unsupported arguments
+argument-hint: "[section] [product-or-topic]  — section: intro | pr | efaq | ifaq | headline | problem | solution | quote | journey | critique"
 user-invocable: true
 ---
 
 # PRFAQ Section Drafter
 
-Write or sharpen a specific section of a PRFAQ following the Mapbox PRFAQ standard. The PRFAQ disciplines you to define the customer experience before any engineering starts, and to land approval from Cherie Wong (CTO) and Anu Sharma (GM) before resourcing follows.
+Write or sharpen a specific section of a PRFAQ following the Mapbox PRFAQ standard. The PRFAQ disciplines you to define the customer experience before any engineering starts, and to land approval from Cherie Wong (CTO) and Anu Sharma (VP of Product) before resourcing follows.
 
 ## What is a Mapbox PRFAQ?
 
@@ -17,12 +17,14 @@ A Mapbox PRFAQ is **6 pages max** with four parts, in this order:
 
 1. **Introduction** — pre-meeting framing with the explicit Cherie ask, launch size, and the business metric being moved.
 2. **Press Release (PR)** — 6 paragraphs written as if the product has already launched.
-3. **External FAQ (E-FAQ)** — customer-facing questions; **comes before Internal FAQ.**
+3. **External FAQ (E-FAQ)** — customer-facing questions
 4. **Internal FAQ (I-FAQ)** — strategic, financial, and technical questions for Mapbox leadership.
 
-Anything beyond 6 pages goes to an appendix.
+Anything beyond 6 pages goes to an appendix. Include page numbers and mark **Mapbox Confidential** in the footer.
 
-The PRFAQ is reviewed at least **3 months before launch**. Approval comes from Cherie (CTO/SVP) and Anu (GM). The PRFAQ is a living document — keep updating it through preview.
+The PRFAQ is reviewed at least **3 months before launch**. Approval comes from Cherie (CTO/SVP) and Anu (VP of Product). The PRFAQ is a living document — keep updating it through preview.
+
+**The PRFAQ names candidate customers.** It provides as much detail and specificity as possible on which customers would benefit, how they would achieve their goals, and why they would find the product remarkable. If you cannot name a customer and clearly identify their needs to win their business, the PRFAQ will not meet expectations.
 
 The test: if the PR isn't compelling enough that you'd genuinely want to use the product, stop and redesign the product — not the PR.
 
@@ -46,13 +48,15 @@ Parse the arguments to determine:
   - `efaq` — External FAQ (customer-facing) — **comes before I-FAQ in the doc**
   - `ifaq` — Internal FAQ (strategic, financial, technical) — comes second
 
+- `critique` — Run the executive critique (Step 6) on an existing full or partial PRFAQ draft. Use this when the user pastes a draft or says "critique this" / "tear this apart" / "is this ready for Anu/Cherie?". Does not draft new content — only surfaces weaknesses and recommended fixes.
+
 If no section is specified, ask which section the user wants help with.
 
 ### Step 2: Gather context
 
 - Read `Tasks/active.md` for in-progress PRFAQ work.
 - Read `Knowledge/Context/goals.md` for OKR alignment — the introduction explicitly asks how the feature aligns with company goals.
-- Search Google Drive (`mcp__claude_ai_Google_Drive__search_files`) for relevant meeting notes, research, or existing PRFAQ drafts; fall back to `Raw/` if Drive MCP is unavailable.
+- Search Google Drive for relevant meeting notes, research, or existing PRFAQ drafts. Prefer the `/gws-drive` skill (uses the `gws` CLI); fall back to `mcp__claude_ai_Google_Drive__search_files` if gws is unavailable; fall back to `Raw/` if neither is set up. **`/gws-drive` requires the `gws` CLI to be installed and authenticated against your Google account — see the [Google Workspace CLI setup guide](https://mapbox.atlassian.net/wiki/spaces/KB/pages/2624880645/Google+Workspace+CLI+gws+User+Setup+Guide).**
 - Check `Knowledge/People/` for stakeholder perspectives that should be reflected — especially Cherie Wong and Anu Sharma (the approvers).
 - Look for: customer pain points, named customer quotes, business-metric baselines, competitive signals, hard constraints, pricing precedent.
 - Reference examples (use to calibrate tone, depth, and format):
@@ -97,6 +101,8 @@ The introduction makes the PRFAQ review meeting efficient. Cover, in order:
 - **Do we need a primer?** Optional. If the reader needs background context (e.g. explaining MTS before pitching MTS Incremental Updates), link to it or include a short summary.
 
 Keep the introduction tight — it exists so reviewers don't have to ask these questions in the meeting.
+
+Mark **Mapbox Confidential** in the document footer and include page numbers.
 
 ---
 
@@ -181,7 +187,7 @@ The I-FAQ surfaces every hard question Cherie, Anu, and engineering will ask. Th
 8. **Are there any internal dependencies/blockers?** — Named teams and named owners.
 9. **What is pricing for the feature?** — Include internal pricing information that won't be publicly messaged. If a separate Pricing doc exists (Cherie's template), summarize and link.
 10. **When are we launching the feature?** — More detailed than the public timeline. Include private preview → public preview → GA stages with target dates.
-11. **What is our adoption goal?** — At minimum, set a goal for the upcoming launch phase. Ideally for all phases.
+11. **What is our adoption goal?** — At minimum, set a goal for the upcoming launch phase. Ideally for all phases. Good metrics are **(i) controllable, (ii) actionable, (iii) reflective of lived user experience.** If using output metrics (ARR, adoption), acknowledge they are not directly controllable and explain the causal chain. If using input metrics (e.g. re-route rate), explain the framework that ties them to the desired impact. No weasel words ("significant," "excellent") in place of numbers.
 12. **How will we measure adoption?** — Dashboard, target adopters sheet, or other concrete instrumentation.
 13. **Sample customer quote.** — Required even if no real customer is on record. Write a synthetic but grounded quote from a customer already interested in the feature; describe their challenge, how the feature solves it, and the business impact. **This quote populates ¶5 of the press release.**
 
@@ -244,6 +250,7 @@ The PRFAQ is a Mapbox external-comms artifact. The press release will be quoted 
 | tool (to describe a Mapbox product) | product, solution, technology |
 | thrive, synergy, groundbreaking | (rephrase — corporate jargon) |
 | market-leading, world's first, cutting edge, transformative, revolutionize | (rephrase — hyperbolic / salesy) |
+| significant, excellent (as substitutes for metrics) | use a specific number or quantitative metric; editorialization can follow a metric, but never replace it |
 | Happy Mapping (sign-off) | Specific call to action; "Team Mapbox" for emails |
 
 **Mapbox brand specifics:**
@@ -297,6 +304,8 @@ Before delivering a draft, check:
 - [ ] **Launch size scored** (Large / Medium / Small) using the four-question rubric.
 - [ ] **6-page cap on the main body.** Anything else moves to an appendix.
 - [ ] **External FAQ comes before Internal FAQ.**
+- [ ] Document marked **Mapbox Confidential** in the footer with page numbers.
+- [ ] **Candidate customers are named** — the PRFAQ identifies specific customers and explains how they benefit. If you cannot name a customer, the doc will not meet expectations.
 
 **Press release**
 
@@ -313,12 +322,13 @@ Before delivering a draft, check:
 - [ ] Pricing answer is specific. If free, the justification is included (COGS, competitive landscape, willingness-to-pay evidence).
 - [ ] Platforms (iOS, Android, Cloud/Web) explicitly broken out.
 - [ ] Customer-facing limitations from I-FAQ Q6 are surfaced here.
+- [ ] **No mention of v2** — do not telegraph that the product is not yet ready. This signals incompleteness and delays customer action.
 
 **Internal FAQ**
 
 - [ ] All 13 required questions answered, in order.
 - [ ] Goal alignment is concrete (named OKR / company priority).
-- [ ] Adoption goal and measurement plan are specific.
+- [ ] Adoption goal and measurement plan are specific — metrics are controllable, actionable, and reflective of lived user experience. No weasel words ("significant," "excellent") in place of quantitative metrics.
 - [ ] **Sample customer quote** drafted — even if synthetic.
 - [ ] Internal pricing / packaging detail that's not publicly messaged is captured.
 - [ ] Dependencies and blockers name teams and owners.
@@ -345,6 +355,105 @@ Before delivering a draft, check:
 - [ ] Engineers and product marketers have reviewed before the meeting.
 - [ ] If pricing is non-free, the separate Pricing doc is drafted (or scheduled for the 1-month-pre-launch pricing review).
 - [ ] After approval, the plan is to engage Product Marketing for the product introduction plan within the same week.
+- [ ] **Feature definition was not delegated to engineers** — if development will take 2+ weeks, the PM must own the definition before handing off.
+- [ ] Review is not being triggered by a high-stakes forcing function (private preview launch, deadline). The PRFAQ should come before, not in reaction to, the forcing function.
+
+---
+
+### Step 6: Document critique
+
+Run this step in two modes:
+- **After drafting** any full section: append a "Critique" block below the draft surfacing weaknesses only (no re-drafting unless asked).
+- **Standalone `critique` mode**: user pastes a full or partial PRFAQ draft; return only the critique output with no new draft content.
+
+---
+
+#### What to look for
+
+Work through each of the six categories below. For each issue found, record: where it appears, what the problem is, and what would fix it.
+
+**1. Unsupported claims**
+
+Flag every assertion that a reviewer could reasonably ask "how do you know that?" and find no answer in the doc.
+
+- Statements about customer pain ("developers lose hours every day...") without a data source, a named customer, or research citation
+- Adoption or growth claims ("this will capture X% of the market") without a pipeline, a baseline, or a comparable
+- Superiority claims ("the fastest," "the only solution") without a benchmark or a named comparison point
+- Pricing rationale stated as fact without evidence (competitive pricing data, willingness-to-pay research, COGS analysis)
+- "Customers love X" / "customers struggle with Y" without a quote, a survey result, or a named reference
+
+**2. Logical gaps**
+
+Flag arguments where the conclusion doesn't follow cleanly from the premises.
+
+- The problem paragraph describes one pain point but the solution solves a different one
+- The "why Mapbox" argument relies on capabilities that are generic or widely available (not differentiated)
+- The "why now" timing is stated without a forcing function — a customer deadline, a competitive move, a market shift, or a contract event that makes now meaningfully different from six months from now
+- An adoption goal is named but the measurement plan doesn't instrument the metric needed to track it
+- A dependency is listed in the I-FAQ without confirming the dependent team has agreed to it
+
+**3. Vague language masking unresolved decisions**
+
+Flag language that reads like a placeholder for a decision the author hasn't made yet.
+
+- "TBD," "to be determined," or "in progress" on anything a reviewer would need to evaluate the proposal (pricing, timeline, scope, resourcing)
+- Outcome language that is directional but not measurable ("improve," "increase," "enhance," "accelerate") where a number is possible
+- Scope described in terms of effort ("we will invest in X") rather than outcome ("customers will be able to do Y by Z date")
+- "We are exploring" or "we will evaluate" as a substitute for a stated position
+
+**4. Weak problem framing**
+
+The press release lives or dies on whether the problem is real and viscerally felt. Flag:
+
+- The problem paragraph describes inconvenience rather than a material cost (lost revenue, lost time, lost contracts, failed use cases)
+- The current workaround (¶3) is described so charitably that the reader doesn't feel the pain of it
+- The problem is described at the category level ("maps are hard") rather than at the specific use-case level that this product actually solves
+- No named customer type, vertical, or persona is attached to the problem — it reads as a hypothetical rather than an observed reality
+
+**5. Solution not earning the WOW moment**
+
+Flag cases where the solution paragraph describes what was built rather than what the customer can now do.
+
+- The WOW moment is a feature ("includes a new API endpoint") rather than an outcome ("a developer can now do X in one call that previously required three round trips and a data-cleaning step")
+- The before/after contrast is implicit — the reader has to infer the improvement rather than feel it directly
+- The customer quote (real or synthetic) is generic praise rather than a specific description of the problem solved and the magnitude of change
+- The solution claims differentiation but the specific dimension of superiority (faster, cheaper, more accurate, easier to integrate) is not named
+
+**6. Internal consistency**
+
+Flag cases where the document contradicts itself or where a claim in one section isn't supported by content elsewhere.
+
+- The business metric named in the Introduction doesn't connect to the adoption goal in I-FAQ Q11 or the measurement plan in I-FAQ Q12
+- The launch timeline in the Introduction conflicts with the phased timeline in I-FAQ Q10
+- A capability described as in-scope in I-FAQ Q5 is listed as a limitation in I-FAQ Q6 (or vice versa) without explanation
+- The customer quote describes a benefit the press release doesn't mention
+
+---
+
+#### Critique output format
+
+Do not re-draft sections — flag, explain, and prescribe the fix. Use this structure:
+
+```
+## PRFAQ Critique — [Product / Section Name]
+
+### Issues found
+
+| # | Section | Severity | Issue | Fix |
+|---|---------|----------|-------|-----|
+| 1 | [e.g. PR ¶2, I-FAQ Q3] | 🔴 / 🟡 | [one-line description] | [one-line fix] |
+| 2 | ... | | | |
+
+### Top gaps before this goes to review
+1. [The issue most likely to cause a reviewer to ask for a rewrite]
+2. [Second most critical]
+3. [Third most critical]
+
+### Overall assessment
+[One sentence: "Strong draft — minor gaps to close." / "Solid structure, but the problem framing and [X] need evidence before review." / "Core argument needs rework — the problem/solution match is unclear."]
+```
+
+Use 🔴 for issues that undermine the core argument or would block approval (unsupported key claims, logical disconnects, major missing evidence). Use 🟡 for issues that would generate skeptical questions a sharp reviewer would ask (vague language, thin competitive framing, directional goals without numbers).
 
 ---
 
@@ -356,8 +465,14 @@ Before delivering a draft, check:
 - The PR is a design tool, not marketing copy. It forces precision about what matters to the customer.
 - The PRFAQ is a living document. Keep updating it through preview as customer learnings come in.
 - **Legal review happens at the PRFAQ stage**, before coding starts — not after the PRFAQ is approved. Loop in Laurel Finch (Legal) before the formal review meeting with Cherie and Anu.
-- **Pre-review path:** PM → manager → service organization leader → Legal (Laurel) → PRFAQ Review Meeting (Cherie + Anu, plus Service / Marketing / Finance / Customer Engagement stakeholders). After approval, engage Product Marketing immediately to start the product introduction plan.
+- **Pre-review path:** PM → manager → service organization leader → Legal (Laurel) → PRFAQ Review Meeting (Cherie + Anu + Peter, plus Service / Marketing / Finance / Customer Engagement stakeholders). After approval, engage Product Marketing immediately to start the product introduction plan.
+- **Peter review is required.** Confirm that what you're shipping has been reviewed with Peter (CEO) before it goes to public use. His context refines the proposal, helps disseminate information with customers and internal teams, and validates direction. If it's not being reviewed with Peter, it's a disservice to the team and the business.
 - After PRFAQ approval, open Legal-followup, Security, and Billing tickets within one week.
+- **Don't mention v2 in the E-FAQ.** It signals the product is not ready and delays customer action.
+- **Don't use weasel words ("significant," "excellent") as substitutes for metrics.** Editorialization can follow a metric ("grew 30%, significantly ahead of goal"), but never replace it. A metric that cannot be stated precisely is a strategy that hasn't been resolved.
+- **Don't delegate feature definition to engineers** for work that will take 2+ weeks. The PM owns definition.
+- **Don't demo technology for its own sake** as a stand-in for a product demo. The demo must identify the specific customer pain, show how the customer uses the product, and explain why this is remarkable.
+- **Don't make a case based on "we've never done this before."** Future growth requires doing things differently; novelty is not a strategy argument.
 - For Medium/Large launches, prepare a "Customer Facing PRFAQ Version" (PDF with confidential footer) for preview testing.
 - Reference example PRFAQs: MTS Incremental Updates (`1rMSMGrtJ5MGXgYv_ExWZ7rzHyOeZPsco9P2jM5wmZb4`) and Mapbox Fleet (`17QCxYxQRnAerjgU-n5maPTVhEmkEVMagxgQci-sYjjY`).
 - **Reference published press release:** [Mapbox + BMW Navigation SDK launch](https://www.businesswire.com/news/home/20201214005607/en/Mapbox-Launches-Navigation-SDK-for-Automotive-BMW-Group-Launch-Partner) — model your PR tone against this.
