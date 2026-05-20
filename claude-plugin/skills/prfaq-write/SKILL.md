@@ -106,32 +106,28 @@ Mark **Mapbox Confidential** in the document footer and include page numbers.
 
 ---
 
-#### PRESS RELEASE (6 paragraphs — strict structure)
+#### PRESS RELEASE (5 paragraphs — strict structure)
 
 The press release has four named structural elements wrapping the body paragraphs. Each one does a specific job:
 
 - **Head** — the title. Appears in the wire summary feed (e.g. BusinessWire). Plain English, no jargon, journalist-usable.
-- **Deck** — the subhead. Does not appear in the wire summary; sets up the lede for readers who clicked through. One sentence: who it's for, what specific outcome it delivers.
+- **Deck** (sub-head) — does not appear in the wire summary; sets up the lede for readers who clicked through. One sentence: who it's for, what specific outcome it delivers.
 - **Dateline** — `CITY, STATE — Date —` opens the body. Standard wire convention.
 - **Boilerplate** — `ABOUT MAPBOX®` block at the end. Use the latest official copy; do not paraphrase.
 
 Write the body in **present tense as if the product already exists** — not "we will be implementing X," but "the API includes X." This is a Mapbox PRFAQ rule and it carries through to the External FAQ.
 
-Compress if you can convey the substance in less, but cover all six beats in this order:
+Cover all five beats in this order:
 
-**¶1 — Announcement.** What we're announcing. Headline first, then 3–4 sentences as a journalist would lede: who, what, headline benefit. Format the headline `[City, Date] — Mapbox — [What it does in plain English]`. No jargon a smart non-expert wouldn't understand.
+**¶1 — Lead.** Communicate what the product or service is, who should care and why they should care (the remarkable outcome for them), and end with a direct CTA. 3–4 sentences: who, what, why remarkable. Format the headline `[City, Date] — Mapbox — [What it does in plain English]`. No jargon a smart non-expert wouldn't understand.
 
-**¶2 — Customer problem.** Describe the customer's reality without the product. Name the friction, the workaround, the cost of the status quo. Use evidence (research, data, named customers). Do NOT mention the solution.
+**¶2 — Customer problem.** Define the customer problem use case(s) and challenges the announcement addresses. Name the friction, the workaround, and the cost of the status quo. Use evidence (research, data, named customers, third-party data with a hyperlink to source). Do NOT mention the solution.
 
-**¶3 — Today's workaround.** What customers are doing today to overcome the problem. This is the second half of the problem framing — what they hack together, what they buy from competitors, what they leave on the table. Sets up the contrast with ¶4.
+**¶3 — Solution + context.** Directly state how the Mapbox product addresses the challenges in ¶2. Go one level deeper: when these challenges typically arise, how this product works, and how customers realize value. Surface the WOW moment — the dimension where this is materially better. Include the leader quote here (typically attributed to a real VP/Director/GM): must sound human, not marketing copy. Should convey why Mapbox is uniquely positioned, why now. Bad: "We're excited to launch..." Good: "For years, developers had to choose between..."
 
-**¶4 — What we're launching.** Explain how the product solves the problem from the customer's perspective. Focus on experience and outcome, not technical mechanism. Surface the WOW moment — the dimension where this is materially better.
+**¶4 — Customer quote.** The customer quote adds to the points already made above, through the lens of the customer's specific business needs. **Write the quote you want them to give you** — not what a customer would say today, but what a customer will say once they've experienced the product. Use a real Mapbox customer wherever possible. If writing a PRFAQ (pre-launch), the quote drafted in the I-FAQ supplementary questions fills this slot until a real customer goes on record.
 
-**¶5 — Customer voice + traction.** What customers are doing or saying right now. **Include a customer quote** — use a real Mapbox customer wherever possible, ideally one already working with us on this problem. The synthetic quote drafted in the Internal FAQ (Step 3, I-FAQ Q13) is what populates this paragraph if no real customer is on record yet.
-
-**¶6 — Wrap.** Close with a call to action realistic for the launch stage (e.g. "Sign up for private preview at...") and the official Mapbox boilerplate at the end.
-
-**Leader quote** is embedded in the press release (typically attributed to a real VP/Director/GM who would logically own this). Must sound like a human, not marketing copy. Should convey: why Mapbox is uniquely positioned, why now. Bad: "We're excited to launch..." Good: "For years, developers had to choose between..."
+**¶5 — Pricing, availability, and CTA.** Mention pricing, availability timeline (private preview → public preview → GA), and the call to action (e.g., product web page). Close with the official Mapbox boilerplate.
 
 ---
 
@@ -154,20 +150,16 @@ The E-FAQ answers questions a real customer would have after reading the press r
 
 **Concrete over abstract:** answers should be specific. If an answer is ambiguous, that's usually a signal of an unresolved product decision, not a writing problem. Frame answers around customer use cases, not internal mechanics — code snippets and example calls are good when they illustrate a use case.
 
-The Mapbox template requires these questions in this order:
+The Mapbox template requires these six questions in this order:
 
-1. **What are we launching today?** — Define the feature in plain English.
-2. **What can I do now that I couldn't do before?** — Two paragraphs:
-   - ¶1: business value prop + the customer problem with current state.
-   - ¶2: what was built/changed; how it addresses the challenge; why customers will be delighted. Differentiation vs. competition is acceptable here — keep it factual, not negative.
-3. **How does the feature work?** — Several sub-questions if needed. Include code examples, screenshots, or videos to illustrate customer value whenever possible.
-4. **What are some customer use cases?** — Highlight customers (real or representative) who'd benefit. Use named verticals and personas.
-5. **How much will the feature cost?** — If priced, summarize and link the Pricing doc. **If free, you must justify with supporting evidence:** Mapbox operations costs / internal COGS, competitive offering and pricing, proof of customer unwillingness to pay. Free is a defended decision, not a default.
-6. **When is the product available?** — Add a timeline (private preview → public preview → GA).
-7. **How do customers get started?** — Link to the product detail page, docs, code examples (added when available).
-8. **Which platforms is this supported on?** — iOS, Android, Cloud/Web. List explicitly.
+1. **What are we shipping today?** — Define the feature in plain English. What is it and what does it do?
+2. **Why should I use this product?** — Cover both the challenge (the customer problem) and the benefit (what the product enables). Two parts: the pain of the status quo, then what this unlocks.
+3. **What are the most common use cases?** — Be as specific as possible. Name customer verticals and personas. Highlight customers (real or representative) who'd benefit most.
+4. **How does it compare with alternatives? (Or: what can I do now that I couldn't do before?)** — Factual differentiation vs. alternatives or the status quo. Keep it factual, not negative. Competitor names stay out of external comms; focus on customer outcomes.
+5. **How do I get started? (Or: how does it work?)** — Include code examples, screenshots, or videos to illustrate customer value. Link to the product detail page and docs.
+6. **How will I be charged?** — If priced, summarize and link the Pricing doc. **If free, you must justify with supporting evidence:** Mapbox operations costs / internal COGS, competitive offering and pricing, proof of customer unwillingness to pay. Free is a defended decision, not a default.
 
-The PM may add additional questions as needed.
+The PM should also add: availability timeline (private preview → public preview → GA), platform support (iOS, Android, Cloud/Web), and any other question a real customer would ask after reading the press release.
 
 **Reuse note:** the E-FAQ can be lifted into a separate document (PDF with confidential footer for Medium/Large launches) and shared with preview customers for testing.
 
@@ -175,21 +167,23 @@ The PM may add additional questions as needed.
 
 #### INTERNAL FAQ (I-FAQ) — Mapbox-only, comes second
 
-The I-FAQ surfaces every hard question Cherie, Anu, and engineering will ask. The Mapbox template requires these questions in this order:
+The I-FAQ surfaces every hard question Cherie, Anu, Peter, and engineering will ask. The Mapbox template requires these six questions in this order:
 
-1. **What problem does the feature solve?**
-2. **Whom does this solve the problem for?** — Focus on verticals and/or personas. Add target customer adopters where known.
-3. **Why should Mapbox solve this problem?** — Why us, why now, why is this on our roadmap rather than a partner's.
-4. **How does the feature align with company goals?** — Tie to the OKR or strategic priority. The introduction names the business metric; this answer connects it to the goal hierarchy.
-5. **What capabilities are in scope?**
-6. **What capabilities are out of scope? Are there any known deficiencies or limitations that should be called out to customers?** — Customer-facing limitations get surfaced in the E-FAQ.
-7. **What alternatives are out there and how does our offering compare?** — Direct comparison is allowed internally; in external comms we avoid naming competitors (legal + tone risk).
-8. **Are there any internal dependencies/blockers?** — Named teams and named owners.
-9. **What is pricing for the feature?** — Include internal pricing information that won't be publicly messaged. If a separate Pricing doc exists (Cherie's template), summarize and link.
-10. **When are we launching the feature?** — More detailed than the public timeline. Include private preview → public preview → GA stages with target dates.
-11. **What is our adoption goal?** — At minimum, set a goal for the upcoming launch phase. Ideally for all phases. Good metrics are **(i) controllable, (ii) actionable, (iii) reflective of lived user experience.** If using output metrics (ARR, adoption), acknowledge they are not directly controllable and explain the causal chain. If using input metrics (e.g. re-route rate), explain the framework that ties them to the desired impact. No weasel words ("significant," "excellent") in place of numbers.
-12. **How will we measure adoption?** — Dashboard, target adopters sheet, or other concrete instrumentation.
-13. **Sample customer quote.** — Required even if no real customer is on record. Write a synthetic but grounded quote from a customer already interested in the feature; describe their challenge, how the feature solves it, and the business impact. **This quote populates ¶5 of the press release.**
+1. **What problem / pain does it solve? (And for whom?)** — Name the specific pain and the customer type (verticals, personas, named target adopters). If you cannot name the customer and clearly identify their needs, the PRFAQ will not meet expectations.
+2. **What is in scope for this launch?** — Be explicit. List the capabilities included in this release.
+3. **What will customers be most disappointed by?** — What is *not* in scope for this launch, and why? Customer-facing limitations should be surfaced in the E-FAQ as well.
+4. **What is the competitive landscape? How competitive will this product be at launch?** — Direct comparison is allowed internally; avoid naming competitors in external comms.
+5. **What will make this launch a success?** — State target metrics. Good metrics are **(i) controllable, (ii) actionable, (iii) reflective of lived user experience.** If using output metrics (ARR, adoption), acknowledge they are not directly controllable and explain the causal chain. If using input metrics (e.g. re-route rate), explain how they connect to the desired impact. No weasel words ("significant," "excellent") in place of numbers.
+6. **How will this contribute to our business success?** — The vision, broader strategic opportunity, or TAM, and the path to that opportunity with future iterations.
+
+**Supplementary questions** the PM should also address (reviewers will ask these):
+
+- **Why should Mapbox solve this, and why now?** — Why us, not a partner. What forcing function makes now the right time.
+- **How does this align with company goals?** — Named OKR or strategic priority. Connect to the business metric named in the Introduction.
+- **What are internal dependencies / blockers?** — Named teams and named owners.
+- **What is the internal pricing / packaging?** — Information not publicly messaged. If a separate Pricing doc exists, summarize and link.
+- **When are we launching?** — Detailed timeline: private preview → public preview → GA with target dates.
+- **Sample customer quote.** — Required even if no real customer is on record. Write the quote you want them to give you once they've experienced the product — their challenge, how the feature solves it, the business impact. **This quote populates ¶4 of the press release.**
 
 **Format:** Question in bold, direct answer below. Don't soften. If the answer is "we don't know yet," say that and state how you'll find out.
 
@@ -204,10 +198,10 @@ The I-FAQ surfaces every hard question Cherie, Anu, and engineering will ask. Th
 
 When asked for a single PR sub-section, use the corresponding paragraph rules from the press-release section above. Constraints worth repeating:
 
-- **Problem paragraph:** customer's reality without the product. Specific friction, workaround, cost of status quo. Cite evidence. Do not mention the solution.
-- **Solution paragraph:** how it solves the problem from the customer's perspective. Experience and outcome, not technical mechanism. Surface the WOW moment.
+- **Problem paragraph (¶2):** customer's reality without the product. Specific friction, workaround, cost of status quo. Cite evidence. Do not mention the solution.
+- **Solution paragraph (¶3):** how Mapbox directly addresses the challenges. Include when the challenges arise + how the product works + how customers realize value. Surface the WOW moment. Leader quote lives here.
 - **Leader quote:** real VP/Director/GM. Human, not marketing copy. Why Mapbox, why now.
-- **Customer quote:** specific, emotional, concrete. Bad: "Great product." Good: "I used to spend 20 minutes manually cleaning data. Now I run one query and it's done."
+- **Customer quote (¶4):** write the quote you want them to give you — through the lens of the customer's specific business needs. Specific, emotional, concrete. Bad: "Great product." Good: "I used to spend 20 minutes manually cleaning data. Now I run one query and it's done."
 - **User journey:** one specific use case as a short narrative scene. Name the persona (e.g. "A fleet manager at a logistics company..."), the context, the action, the result. 4–6 sentences. Should feel like a real moment, not a feature list.
 
 ---
@@ -309,27 +303,28 @@ Before delivering a draft, check:
 
 **Press release**
 
-- [ ] All 6 paragraphs land their job; no paragraph collapses problem and solution into one.
-- [ ] **Customer quote present** — real customer if possible, synthetic from I-FAQ Q13 if not.
-- [ ] **Leader quote** sounds human, not marketing copy.
+- [ ] All 5 paragraphs land their job: ¶1 lead (what + who + why remarkable + CTA), ¶2 problem, ¶3 solution + context + leader quote, ¶4 customer quote, ¶5 pricing/availability/CTA.
+- [ ] ¶1 states **why this is remarkable** — not just what it is.
+- [ ] **Customer quote (¶4) present** — real customer if possible; if pre-launch, write the quote you want them to give you.
+- [ ] **Leader quote (in ¶3)** sounds human, not marketing copy.
 - [ ] WOW moment lands — one sentence that makes a customer lean forward.
 - [ ] Plain English — could be read aloud to a non-expert and understood.
 - [ ] Mapbox boilerplate at the end.
 
 **External FAQ**
 
-- [ ] All 8 required questions answered, in order.
-- [ ] Pricing answer is specific. If free, the justification is included (COGS, competitive landscape, willingness-to-pay evidence).
-- [ ] Platforms (iOS, Android, Cloud/Web) explicitly broken out.
-- [ ] Customer-facing limitations from I-FAQ Q6 are surfaced here.
+- [ ] All 6 required questions answered, in order (shipping today / why use it / use cases / comparison / get started / pricing).
+- [ ] Pricing (Q6) answer is specific. If free, the justification is included (COGS, competitive landscape, willingness-to-pay evidence).
+- [ ] Availability timeline and platform support (iOS, Android, Cloud/Web) added by PM as applicable.
+- [ ] Customer-facing limitations from I-FAQ Q3 are surfaced here.
 - [ ] **No mention of v2** — do not telegraph that the product is not yet ready. This signals incompleteness and delays customer action.
 
 **Internal FAQ**
 
-- [ ] All 13 required questions answered, in order.
-- [ ] Goal alignment is concrete (named OKR / company priority).
-- [ ] Adoption goal and measurement plan are specific — metrics are controllable, actionable, and reflective of lived user experience. No weasel words ("significant," "excellent") in place of quantitative metrics.
-- [ ] **Sample customer quote** drafted — even if synthetic.
+- [ ] All 6 required questions answered, in order (problem+for whom / in scope / disappointments / competitive / success metrics / business contribution).
+- [ ] Supplementary questions addressed: why Mapbox, goal alignment (OKR), dependencies, internal pricing, launch timeline, sample customer quote.
+- [ ] Success metrics (Q5) are controllable, actionable, and reflective of lived user experience. No weasel words ("significant," "excellent") in place of quantitative metrics.
+- [ ] **Sample customer quote** drafted — write the quote you want them to give you. This populates ¶4 of the press release.
 - [ ] Internal pricing / packaging detail that's not publicly messaged is captured.
 - [ ] Dependencies and blockers name teams and owners.
 
@@ -406,7 +401,7 @@ Flag language that reads like a placeholder for a decision the author hasn't mad
 The press release lives or dies on whether the problem is real and viscerally felt. Flag:
 
 - The problem paragraph describes inconvenience rather than a material cost (lost revenue, lost time, lost contracts, failed use cases)
-- The current workaround (¶3) is described so charitably that the reader doesn't feel the pain of it
+- The workaround / current behavior described in ¶2 or ¶3 is framed so charitably that the reader doesn't feel the pain of it
 - The problem is described at the category level ("maps are hard") rather than at the specific use-case level that this product actually solves
 - No named customer type, vertical, or persona is attached to the problem — it reads as a hypothetical rather than an observed reality
 
@@ -423,10 +418,10 @@ Flag cases where the solution paragraph describes what was built rather than wha
 
 Flag cases where the document contradicts itself or where a claim in one section isn't supported by content elsewhere.
 
-- The business metric named in the Introduction doesn't connect to the adoption goal in I-FAQ Q11 or the measurement plan in I-FAQ Q12
-- The launch timeline in the Introduction conflicts with the phased timeline in I-FAQ Q10
-- A capability described as in-scope in I-FAQ Q5 is listed as a limitation in I-FAQ Q6 (or vice versa) without explanation
-- The customer quote describes a benefit the press release doesn't mention
+- The business metric named in the Introduction doesn't connect to the success metrics in I-FAQ Q5
+- The launch timeline in the Introduction conflicts with the phased timeline in the I-FAQ supplementary questions
+- A capability described as in-scope in I-FAQ Q2 is listed as a customer disappointment in I-FAQ Q3 (or vice versa) without explanation
+- The customer quote (¶4) describes a benefit the press release doesn't mention
 
 ---
 
@@ -460,7 +455,7 @@ Use 🔴 for issues that undermine the core argument or would block approval (un
 ## Notes
 
 - **Mapbox PRFAQ is a decision artifact, not a vision doc.** The Introduction's "what do we need from Cherie today" framing is load-bearing. Lead with the ask.
-- **The synthetic customer quote in I-FAQ Q13 populates ¶5 of the press release.** Write it well — it is the customer voice for this PRFAQ until a real customer goes on record.
+- **The sample customer quote in the I-FAQ supplementary questions populates ¶4 of the press release.** Write the quote you want them to give you — it is the customer voice for this PRFAQ until a real customer goes on record.
 - If you can't write a compelling press release, the product strategy is weak — not the writing. Treat a weak PR as a signal to go back to the customer problem.
 - The PR is a design tool, not marketing copy. It forces precision about what matters to the customer.
 - The PRFAQ is a living document. Keep updating it through preview as customer learnings come in.
@@ -473,6 +468,7 @@ Use 🔴 for issues that undermine the core argument or would block approval (un
 - **Don't delegate feature definition to engineers** for work that will take 2+ weeks. The PM owns definition.
 - **Don't demo technology for its own sake** as a stand-in for a product demo. The demo must identify the specific customer pain, show how the customer uses the product, and explain why this is remarkable.
 - **Don't make a case based on "we've never done this before."** Future growth requires doing things differently; novelty is not a strategy argument.
+- **On using AI to draft PRFAQs:** AI can help you draft, but the PM must own the output. If >90% of the words were written by AI, consider marking the doc "AI-powered"; if AI informed the narrative but >90% of the words are yours, "AI-enabled" is appropriate. Don't fall asleep at the wheel — if you're not validating and owning your work, you're delegating it to your manager, and eventually to Peter. What's measured is delivered impact, not doc velocity.
 - For Medium/Large launches, prepare a "Customer Facing PRFAQ Version" (PDF with confidential footer) for preview testing.
 - Reference example PRFAQs: MTS Incremental Updates (`1rMSMGrtJ5MGXgYv_ExWZ7rzHyOeZPsco9P2jM5wmZb4`) and Mapbox Fleet (`17QCxYxQRnAerjgU-n5maPTVhEmkEVMagxgQci-sYjjY`).
 - **Reference published press release:** [Mapbox + BMW Navigation SDK launch](https://www.businesswire.com/news/home/20201214005607/en/Mapbox-Launches-Navigation-SDK-for-Automotive-BMW-Group-Launch-Partner) — model your PR tone against this.
