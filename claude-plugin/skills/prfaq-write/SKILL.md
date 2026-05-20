@@ -16,7 +16,7 @@ The PRFAQ is rooted in Amazon's [Working Backwards](https://www.amazon.com/Worki
 A Mapbox PRFAQ is **6 pages max** with four parts, in this order:
 
 1. **Introduction** — pre-meeting framing with the explicit Cherie ask, launch size, and the business metric being moved.
-2. **Press Release (PR)** — 6 paragraphs written as if the product has already launched.
+2. **Press Release (PR)** — 5 paragraphs written as if the product has already launched.
 3. **External FAQ (E-FAQ)** — customer-facing questions
 4. **Internal FAQ (I-FAQ)** — strategic, financial, and technical questions for Mapbox leadership.
 
@@ -77,7 +77,7 @@ Before drafting any PR section, work through these 12 questions. The answers won
 7. Who are the competitors and what is their product? *(Internal-only context — competitor names stay out of the PR and E-FAQ.)*
 8. How is the Mapbox product different? Is Mapbox better — and on which dimension specifically?
 9. Which customers are using the new product? How are they using it?
-10. Is there a customer to quote, and what is their statement about the product's value? If no real customer is on record yet, the synthetic quote drafted in I-FAQ Q13 fills this slot.
+10. Is there a customer to quote, and what is their statement about the product's value? If no real customer is on record yet, the sample customer quote in the I-FAQ supplementary questions fills this slot.
 11. How much will the product cost?
 12. When is the product available?
 
