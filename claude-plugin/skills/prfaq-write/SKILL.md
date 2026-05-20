@@ -7,7 +7,7 @@ user-invocable: true
 
 # PRFAQ Section Drafter
 
-Write or sharpen a specific section of a PRFAQ following the Mapbox PRFAQ standard. The PRFAQ disciplines you to define the customer experience before any engineering starts, and to land approval from Cherie Wong (CTO) and Anu Sharma (VP of Product) before resourcing follows.
+Write or sharpen a specific section of a PRFAQ following the Mapbox PRFAQ standard. The PRFAQ disciplines you to define the customer experience before any engineering starts, and to land approval from Cherie Wong (SVP) and Anu Sharma (VP of Product) before resourcing follows.
 
 ## What is a Mapbox PRFAQ?
 
@@ -22,7 +22,7 @@ A Mapbox PRFAQ is **6 pages max** with four parts, in this order:
 
 Anything beyond 6 pages goes to an appendix. Include page numbers and mark **Mapbox Confidential** in the footer.
 
-The PRFAQ is reviewed at least **3 months before launch**. Approval comes from Cherie (CTO/SVP) and Anu (VP of Product). The PRFAQ is a living document — keep updating it through preview.
+The PRFAQ is reviewed at least **3 months before launch**. Approval comes from Cherie (SVP) and Anu (VP of Product). The PRFAQ is a living document — keep updating it through preview.
 
 **The PRFAQ names candidate customers.** It provides as much detail and specificity as possible on which customers would benefit, how they would achieve their goals, and why they would find the product remarkable. If you cannot name a customer and clearly identify their needs to win their business, the PRFAQ will not meet expectations.
 
@@ -110,8 +110,8 @@ Mark **Mapbox Confidential** in the document footer and include page numbers.
 
 The press release has four named structural elements wrapping the body paragraphs. Each one does a specific job:
 
-- **Head** — the title. Appears in the wire summary feed (e.g. BusinessWire). Plain English, no jargon, journalist-usable.
-- **Deck** (sub-head) — does not appear in the wire summary; sets up the lede for readers who clicked through. One sentence: who it's for, what specific outcome it delivers.
+- **Head** — This is the press release title; it will appear in the wire summary feed (e.g. BusinessWire). Plain English, no jargon, journalist-usable.
+- **Sub-Head** - the sub-line that’s often referred to as the subhead, it will not appear in the wire summary
 - **Dateline** — `CITY, STATE — Date —` opens the body. Standard wire convention.
 - **Boilerplate** — `ABOUT MAPBOX®` block at the end. Use the latest official copy; do not paraphrase.
 
@@ -123,7 +123,7 @@ Cover all five beats in this order:
 
 **¶2 — Customer problem.** Define the customer problem use case(s) and challenges the announcement addresses. Name the friction, the workaround, and the cost of the status quo. Use evidence (research, data, named customers, third-party data with a hyperlink to source). Do NOT mention the solution.
 
-**¶3 — Solution + context.** Directly state how the Mapbox product addresses the challenges in ¶2. Go one level deeper: when these challenges typically arise, how this product works, and how customers realize value. Surface the WOW moment — the dimension where this is materially better. Include the leader quote here (typically attributed to a real VP/Director/GM): must sound human, not marketing copy. Should convey why Mapbox is uniquely positioned, why now. Bad: "We're excited to launch..." Good: "For years, developers had to choose between..."
+**¶3 — Solution + context.** Directly state how the Mapbox product addresses the challenges in ¶2. Go one level deeper: when these challenges typically arise, how this product works, and how customers realize value. Surface the WOW moment — the dimension where this is materially better. 
 
 **¶4 — Customer quote.** The customer quote adds to the points already made above, through the lens of the customer's specific business needs. **Write the quote you want them to give you** — not what a customer would say today, but what a customer will say once they've experienced the product. Use a real Mapbox customer wherever possible. If writing a PRFAQ (pre-launch), the quote drafted in the I-FAQ supplementary questions fills this slot until a real customer goes on record.
 
@@ -200,7 +200,6 @@ When asked for a single PR sub-section, use the corresponding paragraph rules fr
 
 - **Problem paragraph (¶2):** customer's reality without the product. Specific friction, workaround, cost of status quo. Cite evidence. Do not mention the solution.
 - **Solution paragraph (¶3):** how Mapbox directly addresses the challenges. Include when the challenges arise + how the product works + how customers realize value. Surface the WOW moment. Leader quote lives here.
-- **Leader quote:** real VP/Director/GM. Human, not marketing copy. Why Mapbox, why now.
 - **Customer quote (¶4):** write the quote you want them to give you — through the lens of the customer's specific business needs. Specific, emotional, concrete. Bad: "Great product." Good: "I used to spend 20 minutes manually cleaning data. Now I run one query and it's done."
 - **User journey:** one specific use case as a short narrative scene. Name the persona (e.g. "A fleet manager at a logistics company..."), the context, the action, the result. 4–6 sentences. Should feel like a real moment, not a feature list.
 
