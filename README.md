@@ -5,7 +5,7 @@ A personal context-aware knowledge assistant that runs in Claude Code. Built by 
 ## What you get
 
 - **A KB skeleton** at `~/Documents/second-brain/` (`Knowledge/Context/` for your role + goals, `Knowledge/People/` for stakeholders, `Knowledge/Customers/` for customer accounts — one `.md` per customer, auto-updated on every sync, `Knowledge/Reference/` with Mapbox company + product context, `Raw/` as the synced source-of-truth cache, `Tasks/` for active work, `Templates/` for reusable PM docs)
-- **13 skills** packaged as a local Claude Code plugin: `/update`, `/learn`, `/sync`, `/retro`, `/morning-brief`, `/my-voice`, `/meeting-prep`, `/weekly-update`, `/prd-write`, `/prfaq-write` (draft any PRFAQ section + critique for unsupported claims and weak arguments), `/synthesize-research`, `/strategy-doc-review`, `/cherie-reviewer` (pressure-test OP/strategy docs against Cherie Wong's review gates before sharing)
+- **15 skills** packaged as a local Claude Code plugin: `/update`, `/learn`, `/sync`, `/retro`, `/morning-brief`, `/my-voice`, `/meeting-prep`, `/weekly-update`, `/prd-write`, `/prfaq-write` (draft any PRFAQ section + critique for unsupported claims and weak arguments), `/synthesize-research`, `/strategy-doc-review`, `/cherie-reviewer` (pressure-test OP/strategy docs against Cherie Wong's review gates before sharing), `/consolidate-profile` (roll dated updates in a stakeholder profile into its canonical sections), `/llm-council` (pressure-test any decision through 5 AI advisors with anonymous peer review, per Karpathy's LLM Council method)
 - **A UserPromptSubmit hook** that searches your KB on every prompt and injects relevant snippets so Claude has context without you having to paste it
 - **An auto-memory system** that captures preferences, gotchas, and project facts across sessions
 
@@ -45,6 +45,7 @@ If you'd rather install manually, see [INSTALL.md](INSTALL.md).
 - Bun (`curl -fsSL https://bun.sh/install | bash`) — needed for `qmd`
 - `qmd` ([github.com/tobi/qmd](https://github.com/tobi/qmd)) — `bun install -g qmd`. Used for KB indexing and search.
 - Python 3 (ships with macOS)
+- `gws` (Google Workspace CLI) — optional but recommended. `/update` uses it to read Gemini meeting notes and resolve Meet-recording shortcuts that the Drive MCP can't; without it, those land index-only.
 - A Mapbox Google Workspace + Slack account, connected as MCP connectors via [claude.ai/customize/connectors](https://claude.ai/customize/connectors). The setup prompt walks you through OAuth via `/mcp`.
 
 ## Repo layout
@@ -69,7 +70,7 @@ mapbox-second-brain/
     ├── .claude-plugin/
     │   ├── marketplace.json
     │   └── plugin.json
-    ├── skills/           # 13 skills (SKILL.md per skill)
+    ├── skills/           # 15 skills (SKILL.md per skill)
     └── hooks/
         ├── hooks.json
         └── context-enrichment.sh
@@ -77,7 +78,7 @@ mapbox-second-brain/
 
 ## Daily workflow once set up
 
-- **Morning:** the cloud morning-brief routine emails your daily brief at 7am. Read it.
+- **Morning:** the cloud morning-brief routine DMs your daily brief to you on Slack at 7am (Gmail send is disabled by Mapbox org policy). Read it.
 - **During the day:** Claude Code prompts get auto-enriched with KB context via the hook. You don't have to do anything.
 - **End of day:** `/sync` (runs `/update` + `/learn`). Pulls fresh email/Slack/Drive into `Raw/`, captures session learnings to memory, refreshes the Drive context doc the morning-brief routine reads from.
 - **End of month:** `/retro` for a structured reflection.

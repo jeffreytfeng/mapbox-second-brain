@@ -1,7 +1,7 @@
 ---
 name: consolidate-profile
-description: Roll dated-update sections in a Knowledge/People/<person>.md profile into the canonical sections, archive the raw bullets, and update the consolidation log. Use when the user types "/consolidate-profile", asks to "consolidate profiles", "clean up Anu's profile", or "roll up dated updates". Also invoked automatically by /learn when a profile is 30+ days stale.
-argument-hint: "[person-slug | --all]  — e.g. /consolidate-profile anu-sharma  OR  /consolidate-profile --all"
+description: Roll dated-update sections in a Knowledge/People/<person>.md profile into the canonical sections, archive the raw bullets, and update the consolidation log. Use when the user types "/consolidate-profile", asks to "consolidate profiles", "clean up a stakeholder profile", or "roll up dated updates". Also invoked automatically by /learn when a profile is 30+ days stale.
+argument-hint: "[person-slug | --all]  — e.g. /consolidate-profile alex-kim  OR  /consolidate-profile --all"
 user-invocable: true
 version: 1.0.0
 ---
@@ -17,7 +17,7 @@ Profiles in `Knowledge/People/` grow by accumulating `## YYYY-MM-DD Update` sect
 
 ## Inputs
 
-- `<person-slug>` — file basename in `Knowledge/People/` (e.g. `anu-sharma`, `jordan-parmer`). Use the slug without `.md`.
+- `<person-slug>` — file basename in `Knowledge/People/` (e.g. `alex-kim`, `sam-rivera`). Use the slug without `.md`.
 - `--all` — consolidate every profile that meets the 30-days-+-new-updates threshold (used by `/learn` auto-trigger and by manual quarterly sweeps).
 
 If invoked with no argument, ask the user which profile or whether to do `--all`.
@@ -61,7 +61,7 @@ Read the to-be-consolidated dated-update bullets. For each bullet, decide where 
 - **Promote durable patterns, demote one-off context.** A single mention of a preference is a data point; three mentions over multiple updates is a pattern that belongs in the canonical section.
 - **Drop the date when integrating.** "On May 6, she said X" → "She prioritizes X." The date lives in the archive.
 - **Preserve dissent.** If a dated update *contradicts* an existing canonical bullet (e.g. profile said "open to consumer apps," update said "explicitly does not want a consumer product"), the newer take wins but flag the contradiction in the consolidation report so the user can verify.
-- **Don't over-summarize.** If a working note is genuinely specific and load-bearing (e.g. "the Christian → Peter escalation chain on Zeekr"), keep the specificity in the canonical section.
+- **Don't over-summarize.** If a working note is genuinely specific and load-bearing (e.g. a named escalation chain on a specific account), keep the specificity in the canonical section.
 
 ### 4. Archive the raw bullets
 
@@ -106,7 +106,7 @@ If the log file doesn't exist, create it with this header:
 
 Tell the user, per profile consolidated:
 
-- Person name and the date range of dated-update sections consolidated (e.g. "anu-sharma: rolled in 6 updates from 2026-04-22 to 2026-05-08")
+- Person name and the date range of dated-update sections consolidated (e.g. "alex-kim: rolled in 6 updates from 2026-04-22 to 2026-05-08")
 - Which canonical sections got new content (just the section names, not the diff)
 - Any contradictions surfaced (with the contradicting bullets quoted briefly)
 - Confirmation the archive was written and the log updated

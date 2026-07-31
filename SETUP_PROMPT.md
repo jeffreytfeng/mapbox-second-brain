@@ -68,6 +68,7 @@ The hook is already installed. Test it:
 
 Walk me through each skill once so I know what they do:
 
+- `/update` — pulls Drive, Gmail, Slack, Gemini meeting notes, and (optionally) JIRA into `Raw/`. Before my first run, help me fill in the placeholders in `~/.claude/plugins/local/mapbox-second-brain/skills/update/SKILL.md`: `<your-meet-recordings-folder-id>` (from my Drive "Meet Recordings" folder URL), `<your-company-domain>`, `<your-email>`, `<your-jira-handle>`, and `<YOUR-PROJECTS>` (my JIRA project keys). Skip the JIRA and gws-dependent parts if I don't use them.
 - `/sync` — runs `/update` then `/learn` in sequence. End-of-day command.
 - `/learn` — captures conversation insights to `~/.claude/projects/-Users-<username>-Documents-second-brain/memory/`, updates `Knowledge/People/` profiles for anyone mentioned and `Knowledge/Customers/` profiles for any customer context that surfaced, and **pushes a fresh `<my-name> — Second Brain Context (Morning Brief)` doc to Google Drive**. That Drive doc is the bridge that lets the cloud morning-brief agent read my KB — it has no local filesystem access. If `/learn` Step 5 stops running, the morning brief goes stale.
 - `/retro` — monthly reflection. Don't run today; just show me where it lives.
@@ -88,7 +89,7 @@ The morning brief runs as a remote scheduled agent (NOT a local cron). It needs 
    - **Prompt:** based on `~/.claude/plugins/local/mapbox-second-brain/skills/morning-brief/SKILL.md`, with these overrides for the cloud context:
      - **Replace step 0 (Load context)** with: "Search Drive for files titled `<my-name> — Second Brain Context (Morning Brief)` and read the most recently modified one — this is the canonical source. The agent has NO local filesystem access, so this Drive doc replaces local `Tasks/active.md`, `goals.md`, `role-context.md`, etc."
      - **Replace step 7 (Write to morning-brief.md)** — the cloud agent has no local filesystem; do NOT try to write a local file. Instead:
-       - **Send** the brief via Gmail (auto-send, not draft) to `<my-email>` with subject `Morning Brief — [Weekday, Month Day]`
+       - **Send** the full brief as a Slack DM to me (look up my Slack user ID via `slack_search_users`). Do NOT send via Gmail — the Gmail send scope is disabled by Mapbox org policy, so a Gmail-send step silently fails.
        - **Save** a copy as a Google Drive doc titled `Morning Brief — YYYY-MM-DD`
 4. Show me the routine ID. Save it as a project memory: `project_morning_brief.md`.
 

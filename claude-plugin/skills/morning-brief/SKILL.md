@@ -30,9 +30,10 @@ Generate a morning brief and write it to `morning-brief.md`.
    - Note back-to-back stretches that limit deep work time
 
 4. **Check Email**
-   - Search Gmail: `is:unread newer_than:2d` to surface unread threads
-   - Also search: `newer_than:1d` for recent high-signal threads
-   - Look for: direct asks from the user's manager or key stakeholders, decisions needed, time-sensitive requests
+   - Search Gmail for unread threads in the last 2 days: use the Gmail MCP's `search_threads` with query `is:unread newer_than:2d`
+   - Also search for high-signal threads: `newer_than:1d` (from key stakeholders, customers, or cross-team asks)
+   - Look for: direct asks, decisions pending the user's input, time-sensitive requests, calendar changes
+   - Gmail is an **input source only** — never create drafts or send email from this skill
 
 5. **Check Slack**
    - Search for threads where the user was mentioned or DM'd in the last 2 days: use `slack_search_public_and_private` with query `to:me newer_than:2d`
@@ -55,6 +56,12 @@ Generate a morning brief and write it to `morning-brief.md`.
 
 7. **Write to morning-brief.md**
    - **Always overwrite** `morning-brief.md` in the project root with the full brief
+
+8. **Send to Slack**
+   - **Always** send the full brief as a DM to yourself using `slack_send_message`
+   - Look up your own Slack user ID first via `slack_search_users` (search your own name or handle)
+   - Send the complete brief text — do not truncate or summarize it
+   - This step is mandatory every run, not optional
 
 ## Output Format
 
@@ -91,7 +98,7 @@ Generate a morning brief and write it to `morning-brief.md`.
 [1-2 sentences on what matters most today and why]
 
 ---
-*Generated: [date] | Sources: Google Calendar, Gmail, Slack, Tasks/active.md*
+*Generated: [date] | Sources: Google Calendar, Gmail, Slack, Tasks/active.md | Sent to: morning-brief.md + Slack DM*
 ```
 
 ## Notes

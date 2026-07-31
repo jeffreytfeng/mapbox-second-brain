@@ -25,7 +25,7 @@ Execute all steps from the `/update` skill in full:
 - Summarize Slack channels and DMs → `Raw/slack-digest-<date>.md`
 - Update `Tasks/active.md` with new action items and status changes
 - Re-index with `qmd collection add` + `qmd update`
-- Write timestamp to `Raw/last-updated.md`
+- Write timestamp to BOTH `Raw/last-updated.md` AND `Raw/.last-updated` (identical content — never skip, even on a no-new-content run)
 
 ## Step 2: Run /learn
 

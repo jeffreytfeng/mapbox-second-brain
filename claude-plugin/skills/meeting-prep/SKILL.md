@@ -25,18 +25,33 @@ Prepare context and talking points for an upcoming meeting.
    - Search Google Drive for past meeting notes involving this person: use `mcp__claude_ai_Google_Drive__search_files` with terms like `"[person name] 1:1"` or `"[person name] notes"`
    - From both sources, surface: open action items, recent decisions, escalations, or commitments made by either party
 
-4. **Pull Current Context**
+4. **Check Gmail for Recent Threads**
+   - Search Gmail for recent threads involving this person: use the Gmail MCP's `search_threads` with query `from:{{person email}} OR to:{{person email}} newer_than:14d`
+   - Also search by their name if email is unknown: `"{{person name}}" newer_than:14d`
+   - Extract: open asks, decisions, commitments, context that should inform talking points
+   - Gmail is an **input source only** — never create drafts or send email from this skill
+
+5. **Pull Current Context**
    - Check `Tasks/active.md` for anything relevant to discuss
    - Check `Knowledge/Context/goals.md` for metrics they care about
    - Search Google Drive MCP (`mcp__claude_ai_Google_Drive__search_files`) for recent decisions or commitments relevant to this person or their team; fall back to `Raw/`, `strategic-context`, or `historical-context` if Drive MCP is unavailable or returns nothing
 
-5. **Apply voice profile**
+6. **Apply voice profile**
    - Read `Knowledge/Context/my-voice.md` — apply its tone and formatting preferences to the prep doc output
    - If the file only contains the placeholder (not yet generated), proceed without it
 
-6. **Generate Prep Doc**
+7. **Generate Prep Doc**
    - Output talking points in their preferred format (e.g., BLUF for senior execs)
    - Include open items, relevant metrics, prep questions
+
+8. **Save to Second Brain**
+   - Write the full prep doc to `Raw/meeting-prep-YYYY-MM-DD-{{person}}.md` (use today's date and the meeting person/name)
+   - Overwrite if the file already exists for today
+
+9. **Post to Slack**
+   - Look up your own Slack user ID: use `slack_search_users` (search your own name or handle)
+   - Send the full prep doc as a DM to yourself: use `slack_send_message` with your member ID as the channel
+   - Confirm the message was sent
 
 ## Output Format
 
