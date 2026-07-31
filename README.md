@@ -43,7 +43,7 @@ If you'd rather install manually, see [INSTALL.md](INSTALL.md).
 - macOS (some bits assume it; `launchctl`-related notes are macOS-flavored)
 - Claude Code CLI ([install](https://docs.anthropic.com/claude/docs/claude-code))
 - Bun (`curl -fsSL https://bun.sh/install | bash`) — needed for `qmd`
-- `qmd` ([github.com/tobi/qmd](https://github.com/tobi/qmd)) — `bun install -g qmd`. Used for KB indexing and search.
+- `qmd` ([github.com/tobi/qmd](https://github.com/tobi/qmd)) — `bun install -g @tobilu/qmd`. Used for KB indexing and search.
 - Python 3 (ships with macOS)
 - `gws` (Google Workspace CLI) — optional but recommended. `/update` uses it to read Gemini meeting notes and resolve Meet-recording shortcuts that the Drive MCP can't; without it, those land index-only.
 - A Mapbox Google Workspace + Slack account, connected as MCP connectors via [claude.ai/customize/connectors](https://claude.ai/customize/connectors). The setup prompt walks you through OAuth via `/mcp`.
