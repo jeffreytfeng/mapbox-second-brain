@@ -195,5 +195,5 @@ echo
 echo "Next steps:"
 echo "  1. Open Claude Code at ~/Documents/second-brain/"
 echo "  2. Paste the contents of SETUP_PROMPT.md to start the interview"
-echo "  3. (Optional) Install qmd if you want the context-enrichment hook to find KB results: bun install -g qmd  (https://github.com/tobi/qmd)"
+echo "  3. (Optional) Install qmd if you want the context-enrichment hook to find KB results: bun install -g @tobilu/qmd  (https://github.com/tobi/qmd)"
 echo

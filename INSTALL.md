@@ -70,7 +70,7 @@ cp claude-plugin/hooks/context-enrichment.sh ~/.claude/hooks/context-enrichment.
 chmod +x ~/.claude/hooks/context-enrichment.sh
 ```
 
-> The hook calls `qmd` (a local-first vector search tool). If `qmd` isn't installed, the hook exits silently — nothing breaks. Install qmd later when you're ready: `bun install -g qmd` (https://github.com/tobi/qmd)
+> The hook calls `qmd` (a local-first vector search tool). If `qmd` isn't installed, the hook exits silently — nothing breaks. Install qmd later when you're ready: `bun install -g @tobilu/qmd` (https://github.com/tobi/qmd)
 
 ---
 

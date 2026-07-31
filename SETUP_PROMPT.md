@@ -12,7 +12,7 @@ Sanity check before we start. Run these and report what's missing:
 2. `ls ~/.claude/plugins/local/mapbox-second-brain/` — confirm `skills/` and `hooks/`
 3. Check `~/.claude/settings.json` — confirm the `mapbox-second-brain` marketplace and `second-brain` plugin are enabled
 4. Check `~/.claude/settings.local.json` — confirm a UserPromptSubmit hook pointing at `~/.claude/hooks/context-enrichment.sh` is registered
-5. `which qmd` — confirm qmd is on PATH; if not, install with `bun install -g qmd`
+5. `which qmd` — confirm qmd is on PATH; if not, install with `bun install -g @tobilu/qmd` (the unscoped `qmd` on npm is an unrelated empty package)
 6. `qmd collection list` — confirm `raw` collection exists; if not, run `qmd collection add Documents/second-brain/Raw` (lowercase only — capital R creates a duplicate)
 
 If anything is missing, stop and tell me what to fix.
