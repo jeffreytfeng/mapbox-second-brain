@@ -1,5 +1,5 @@
 ---
-name: doc-review
+name: strategy-doc-review
 description: >
   Review and critique strategy documents — including strategy memos, proposals, roadmap narratives,
   and one-pagers. Use this skill whenever someone shares a document and asks for feedback, a review,
