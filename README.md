@@ -45,7 +45,7 @@ If you'd rather install manually, see [INSTALL.md](INSTALL.md).
 - Bun (`curl -fsSL https://bun.sh/install | bash`) — needed for `qmd`
 - `qmd` ([github.com/tobi/qmd](https://github.com/tobi/qmd)) — `bun install -g @tobilu/qmd`. Used for KB indexing and search.
 - Python 3 (ships with macOS)
-- `gws` (Google Workspace CLI) — optional but recommended. `/update` uses it to read Gemini meeting notes and resolve Meet-recording shortcuts that the Drive MCP can't; without it, those land index-only.
+- `gws` (Google Workspace CLI) — **required**. `/update` uses it to read Gemini meeting notes and resolve Meet-recording shortcuts that the Drive MCP can't. Install from [mapbox/claude-plugins/gws](https://github.com/mapbox/claude-plugins/tree/main/gws) and follow the [gws User Setup Guide](https://mapbox.atlassian.net/wiki/spaces/KB/pages/2624880645/Google+Workspace+CLI+gws+User+Setup+Guide) to authenticate.
 - A Mapbox Google Workspace + Slack account, connected as MCP connectors via [claude.ai/customize/connectors](https://claude.ai/customize/connectors). The setup prompt walks you through OAuth via `/mcp`.
 
 ## Repo layout

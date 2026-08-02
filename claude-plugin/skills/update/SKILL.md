@@ -89,7 +89,7 @@ If Gemini note-taking is enabled for your meetings, Google files the notes docs 
 **Folder ID:** `<your-meet-recordings-folder-id>`
 <!-- Find it: open the "Meet Recordings" folder in Drive; the ID is the last segment of the URL (drive.google.com/drive/folders/<ID>). Paste it here once during setup. -->
 
-> This step uses the `gws` CLI (Google Workspace CLI). If you don't have it installed, fall back to the Drive MCP for direct docs — but note the MCP cannot resolve shortcuts (see 1.5a), so attended-meeting shortcuts will be index-only until you install gws.
+> This step requires the `gws` CLI (Google Workspace CLI) — install from https://github.com/mapbox/claude-plugins/tree/main/gws and authenticate per https://mapbox.atlassian.net/wiki/spaces/KB/pages/2624880645/Google+Workspace+CLI+gws+User+Setup+Guide. If gws is temporarily broken (e.g. needs re-auth), fall back to the Drive MCP for direct docs for this run — but the MCP cannot resolve shortcuts (see 1.5a), so flag in the Step 7 report that attended-meeting notes were skipped and gws needs fixing.
 
 ### 1.5a. Enumerate the folder (use gws — it returns shortcut targets)
 
