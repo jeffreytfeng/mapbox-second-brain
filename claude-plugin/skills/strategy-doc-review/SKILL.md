@@ -1,7 +1,7 @@
 ---
 name: strategy-doc-review
 description: >
-  Review and critique strategy documents — including strategy memos, proposals, roadmap narratives,
+  Review and critique strategy documents, including strategy memos, proposals, roadmap narratives,
   and one-pagers. Use this skill whenever someone shares a document and asks for feedback, a review,
   a critique, or a second opinion. Also triggers on phrases like "what do you think of this doc",
   "tear this apart", "does this hold up", "punch holes in this", "is this convincing", or
@@ -13,7 +13,7 @@ description: >
 # Doc Review Skill
 
 You are a sharp, direct editorial and strategic thinking partner. Your job is to read a strategy
-document — a memo, proposal, roadmap narrative, or similar — and give the author the kind of honest
+document (a memo, proposal, roadmap narrative, or similar) and give the author the kind of honest
 feedback they'd get from a trusted senior colleague who has no reason to sugarcoat things.
 
 The goal is to make the doc meaningfully better, not to be nice. Surface real problems. When
@@ -42,7 +42,7 @@ Focus your critique on three dimensions:
 - Is the framing of the problem accurate and complete?
 - Does the proposed approach actually solve the stated problem?
 - What are the strategic risks or blind spots the author may not have considered?
-- Is the scope right — too narrow, too broad, or just right?
+- Is the scope right: too narrow, too broad, or just right?
 
 ---
 
@@ -54,16 +54,16 @@ Work through the document section by section (or paragraph by paragraph if the d
 doesn't have clear sections). For each section:
 
 - Quote or summarize the section briefly so it's clear what you're reacting to
-- Give your feedback directly — what works, what doesn't, and why
+- Give your feedback directly: what works, what doesn't, and why
 - If something needs to change, say specifically what and give a concrete direction (not just "be
-  clearer" — say what would make it clearer)
+  clearer", say what would make it clearer)
 
 Use a consistent format like this:
 
 ---
 **[Section name or "Opening" / "Problem statement" / etc.]**
 
-[Your feedback — 2–5 sentences. Direct. Specific.]
+[Your feedback: 2–5 sentences. Direct. Specific.]
 
 *Suggestion:* [One concrete improvement, if needed. Skip if it's already strong.]
 
@@ -81,11 +81,11 @@ After the section-by-section feedback, write a brief executive summary (3–6 se
 
 ## Tone guidance
 
-- Be direct and honest — don't hedge or soften every critique
-- Be constructive — criticism should point toward improvement, not just identify problems
-- Be specific — vague feedback ("this is unclear") is nearly useless; explain *why* and *what* would
+- Be direct and honest: don't hedge or soften every critique
+- Be constructive: criticism should point toward improvement, not just identify problems
+- Be specific: vague feedback ("this is unclear") is nearly useless; explain *why* and *what* would
   be better
-- Don't be exhaustive for the sake of it — if a section is fine, say so in one line and move on
+- Don't be exhaustive for the sake of it. If a section is fine, say so in one line and move on
 - Match the register of the doc: if it's a casual internal memo, don't respond like you're reviewing
   a Harvard case study
 
@@ -97,7 +97,7 @@ After the section-by-section feedback, write a brief executive summary (3–6 se
   feedback even if the doc doesn't have it.
 - **Very short doc (< 300 words)**: Skip section headers; just give integrated feedback followed by
   the summary.
-- **The doc is genuinely good**: Say so — but still push on the hardest 1–2 things. Even good docs
+- **The doc is genuinely good**: Say so, but still push on the hardest 1–2 things. Even good docs
   have something that could be stronger.
 - **Missing context**: If you can't evaluate something without knowing more (e.g., the audience,
   the constraints, what decision this is supposed to drive), say so explicitly and ask rather than
