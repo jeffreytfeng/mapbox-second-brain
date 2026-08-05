@@ -45,7 +45,7 @@ If you'd rather install manually, see [INSTALL.md](INSTALL.md).
 - Bun (`curl -fsSL https://bun.sh/install | bash`) — needed for `qmd`
 - `qmd` ([github.com/tobi/qmd](https://github.com/tobi/qmd)) — `bun install -g @tobilu/qmd`. Used for KB indexing and search.
 - Python 3 (ships with macOS)
-- `gws` (Google Workspace CLI) — optional but recommended. `/update` uses it to read Gemini meeting notes and resolve Meet-recording shortcuts that the Drive MCP can't; without it, those land index-only.
+- `gws` (Google Workspace CLI) — **required**. `/update` uses it to read Gemini meeting notes and resolve Meet-recording shortcuts that the Drive MCP can't. Install from [mapbox/claude-plugins/gws](https://github.com/mapbox/claude-plugins/tree/main/gws) and follow the [gws User Setup Guide](https://mapbox.atlassian.net/wiki/spaces/KB/pages/2624880645/Google+Workspace+CLI+gws+User+Setup+Guide) to authenticate.
 - A Mapbox Google Workspace + Slack account, connected as MCP connectors via [claude.ai/customize/connectors](https://claude.ai/customize/connectors). The setup prompt walks you through OAuth via `/mcp`.
 
 ## Repo layout
@@ -93,7 +93,8 @@ If you change a skill, restart your Claude Code session for the change to take e
 
 - **Slack MCP requires OAuth.** Showing up in the connector list doesn't mean it's authenticated. Run `/mcp` and complete the browser flow.
 - **Drive `modifiedTime` needs full ISO 8601 with `Z`.** `2026-04-29T03:52:00.000Z`, not `2026-04-29T03:52:00`.
-- **`qmd collection add Raw` (capital R) creates a duplicate.** Use lowercase or skip after the first run.
+- **`qmd collection add` needs an absolute path.** A relative path resolves against the current working directory, not home, so adding the same folder twice under different spellings creates a duplicate collection. Use `qmd collection add ~/Documents/second-brain/Raw`; the resulting collection is named `Raw`.
+- **`qmd update` does not embed.** It indexes new and changed files but generates no vectors, so `qmd vsearch` stays blind to them until you also run `qmd embed`.
 - **Cloud routines have no local filesystem access.** That's why the `/learn` skill pushes a context doc to Google Drive — it's the bridge.
 - **DST.** Cron expressions are UTC. When DST starts/ends, update the morning-brief cron at `https://claude.ai/code/routines/<routine-id>` or it'll drift one hour.
 

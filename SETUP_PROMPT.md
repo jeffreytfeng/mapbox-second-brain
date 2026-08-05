@@ -13,7 +13,8 @@ Sanity check before we start. Run these and report what's missing:
 3. Check `~/.claude/settings.json` — confirm the `mapbox-second-brain` marketplace and `second-brain` plugin are enabled
 4. Check `~/.claude/settings.local.json` — confirm a UserPromptSubmit hook pointing at `~/.claude/hooks/context-enrichment.sh` is registered
 5. `which qmd` — confirm qmd is on PATH; if not, install with `bun install -g @tobilu/qmd` (the unscoped `qmd` on npm is an unrelated empty package)
-6. `qmd collection list` — confirm `raw` collection exists; if not, run `qmd collection add Documents/second-brain/Raw` (lowercase only — capital R creates a duplicate)
+5b. `which gws` and `gws auth status` — confirm the Google Workspace CLI is installed and authenticated. It's required (Gemini meeting notes + Meet-recording shortcut resolution in `/update`). If missing, install from https://github.com/mapbox/claude-plugins/tree/main/gws and follow the setup guide at https://mapbox.atlassian.net/wiki/spaces/KB/pages/2624880645/Google+Workspace+CLI+gws+User+Setup+Guide
+6. `qmd collection list` — confirm the `Raw` collection exists; if not, run `qmd collection add ~/Documents/second-brain/Raw`. Use an **absolute** path — a relative one resolves against the current working directory, not home, and adding the same folder twice under different path spellings creates a duplicate collection. The collection name is derived from the directory name, so it is `Raw`, capital R.
 
 If anything is missing, stop and tell me what to fix.
 
@@ -68,7 +69,7 @@ The hook is already installed. Test it:
 
 Walk me through each skill once so I know what they do:
 
-- `/update` — pulls Drive, Gmail, Slack, Gemini meeting notes, and (optionally) JIRA into `Raw/`. Before my first run, help me fill in the placeholders in `~/.claude/plugins/local/mapbox-second-brain/skills/update/SKILL.md`: `<your-meet-recordings-folder-id>` (from my Drive "Meet Recordings" folder URL), `<your-company-domain>`, `<your-email>`, `<your-jira-handle>`, and `<YOUR-PROJECTS>` (my JIRA project keys). Skip the JIRA and gws-dependent parts if I don't use them.
+- `/update` — pulls Drive, Gmail, Slack, Gemini meeting notes, and (optionally) JIRA into `Raw/`. Before my first run, help me fill in the placeholders in `~/.claude/plugins/local/mapbox-second-brain/skills/update/SKILL.md`: `<your-meet-recordings-folder-id>` (from my Drive "Meet Recordings" folder URL), `<your-company-domain>`, `<your-email>`, `<your-jira-handle>`, and `<YOUR-PROJECTS>` (my JIRA project keys). Skip the JIRA parts if I don't use JIRA; the gws-dependent parts are not skippable — gws was verified in Phase 0.
 - `/sync` — runs `/granola-sync`, then `/update`, then `/learn`, in sequence. End-of-day command.
 - `/granola-sync` — copies Granola meeting notes into Drive as Google Docs, classifying each as work or personal and naming work notes to match the calendar event so `/update` Step 1.5 picks them up. Skip this one if I don't use Granola; otherwise help me fill in its placeholders (`<your-granola-account>`, `<your-work-email>`, `<your-meet-recordings-folder-id>`, `<your-personal-google-account>`).
 - `/learn` — captures conversation insights to `~/.claude/projects/-Users-<username>-Documents-second-brain/memory/`, updates `Knowledge/People/` profiles for anyone mentioned and `Knowledge/Customers/` profiles for any customer context that surfaced, and **pushes a fresh `<my-name> — Second Brain Context (Morning Brief)` doc to Google Drive**. That Drive doc is the bridge that lets the cloud morning-brief agent read my KB — it has no local filesystem access. If `/learn` Step 5 stops running, the morning brief goes stale.
