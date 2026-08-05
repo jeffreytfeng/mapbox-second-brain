@@ -69,7 +69,8 @@ The hook is already installed. Test it:
 Walk me through each skill once so I know what they do:
 
 - `/update` — pulls Drive, Gmail, Slack, Gemini meeting notes, and (optionally) JIRA into `Raw/`. Before my first run, help me fill in the placeholders in `~/.claude/plugins/local/mapbox-second-brain/skills/update/SKILL.md`: `<your-meet-recordings-folder-id>` (from my Drive "Meet Recordings" folder URL), `<your-company-domain>`, `<your-email>`, `<your-jira-handle>`, and `<YOUR-PROJECTS>` (my JIRA project keys). Skip the JIRA and gws-dependent parts if I don't use them.
-- `/sync` — runs `/update` then `/learn` in sequence. End-of-day command.
+- `/sync` — runs `/granola-sync`, then `/update`, then `/learn`, in sequence. End-of-day command.
+- `/granola-sync` — copies Granola meeting notes into Drive as Google Docs, classifying each as work or personal and naming work notes to match the calendar event so `/update` Step 1.5 picks them up. Skip this one if I don't use Granola; otherwise help me fill in its placeholders (`<your-granola-account>`, `<your-work-email>`, `<your-meet-recordings-folder-id>`, `<your-personal-google-account>`).
 - `/learn` — captures conversation insights to `~/.claude/projects/-Users-<username>-Documents-second-brain/memory/`, updates `Knowledge/People/` profiles for anyone mentioned and `Knowledge/Customers/` profiles for any customer context that surfaced, and **pushes a fresh `<my-name> — Second Brain Context (Morning Brief)` doc to Google Drive**. That Drive doc is the bridge that lets the cloud morning-brief agent read my KB — it has no local filesystem access. If `/learn` Step 5 stops running, the morning brief goes stale.
 - `/retro` — monthly reflection. Don't run today; just show me where it lives.
 
@@ -97,7 +98,7 @@ The morning brief runs as a remote scheduled agent (NOT a local cron). It needs 
 
 Tell me how to live with this thing:
 
-- End of day: `/sync` (combines `/update` + `/learn`)
+- End of day: `/sync` (combines `/granola-sync` + `/update` + `/learn`)
 - On demand: `/morning-brief` for an interactive brief (separate from the daily cloud routine)
 - After 1 week: `/retro` won't have a month yet, but `/learn` will have built up auto-memory — peek at `MEMORY.md` to see what stuck
 - Periodic cleanup: old `Morning Brief — YYYY-MM-DD` Drive docs accumulate; delete manually monthly

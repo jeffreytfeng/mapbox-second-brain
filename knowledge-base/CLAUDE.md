@@ -86,6 +86,7 @@ Keep the full assessment in Knowledge/Context/me.md; this section is the distill
 - Stakeholder updates: 3-5 bullet points, lead with what changed since last update
 - Decision logs: Date, decision, context, who decided, source link
 - Status reports: Traffic-light format (Green/Yellow/Red) per workstream
+- Always list sources at the end of a response when the answer draws on specific files, docs, Slack threads, or emails. Format: `Sources: [name](path or link), [name](path or link)`. Skip this for purely conversational replies that cite nothing.
 
 
 ## Safety

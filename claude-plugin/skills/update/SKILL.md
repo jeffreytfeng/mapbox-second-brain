@@ -1,7 +1,7 @@
 ---
 name: update
 description: Sync the second-brain KB with fresh content from Google Drive, Gmail, and Slack, then re-index with qmd.
-version: 2.3.0
+version: 2.5.0
 ---
 
 # /update — KB Sync
@@ -24,14 +24,14 @@ Keep the cutoff date in memory — you'll use it to filter all three sources bel
 
 ### 1a. Discover files via local filesystem
 
-Run a Bash `find` command on `~/Google Drive/` to list files modified since the cutoff:
+Run a Bash `find` command on `~/Google Drive/My Drive/` to list files modified since the cutoff. **Scope to `My Drive/`, not the `~/Google Drive/` root** — the root also contains `Other computers` and `Shared drives`, which are slow-to-stat cloud-streamed placeholders and will cause `find` to hang for 2+ minutes:
 
 ```bash
-find ~/Google\ Drive/ -newer ~/Documents/second-brain/Raw/last-updated.md -type f \
+find ~/Google\ Drive/My\ Drive/ -newer ~/Documents/second-brain/Raw/last-updated.md -type f \
   ! -name "*.DS_Store" ! -name "*.tmp" ! -name "*.gdoc" ! -name "*.gsheet" ! -name "*.gslides"
 ```
 
-If `last-updated.md` doesn't exist, use `-mtime -14` instead of `-newer`.
+If `last-updated.md` doesn't exist, use `-mtime -14` instead of `-newer`. Note: macOS has no `timeout`/`gtimeout` by default — if you need a hard cap on a long-running `find`, run it with the Bash tool's `run_in_background` option instead of piping through `timeout`.
 
 ### 1b. Relevance filter (for filesystem results)
 
@@ -86,6 +86,8 @@ Log each file exported: title, source path, last modified date.
 
 If Gemini note-taking is enabled for your meetings, Google files the notes docs into a "Meet Recordings" folder in your Drive. **Meetings you organized** land there automatically as a **direct Doc**. **Meetings you only attended** do NOT auto-file — Google does not place a shortcut, so those arrive via the Gmail path in Step 1.6 (or via shortcuts you file yourself; see 1.6d for automating that). Both kinds are readable (see 1.5a). **Always sync this folder on every `/update` run** — it's the canonical source of meeting context.
 
+**⚠️ This step is mandatory and non-optional — it must actually execute the `gws` scan below, every run, with no exceptions.** A real run once skipped this step entirely and reasoned "meeting notes are already covered by `/granola-sync`." That reasoning is always wrong: `/granola-sync` only handles notes you captured in Granola (tracked separately in `Raw/granola-sync-state.json`) — it has no visibility into Gemini's independent auto-notes for meetings not run through Granola. If you catch yourself thinking "this is probably already covered," that is the exact failure mode — stop and run 1.5a for real. A follow-up two-week audit after that incident found 12 more missed meetings, one of which carried a critical data-quality decision. See 1.5h below for the reconciliation check now required every run.
+
 **Folder ID:** `<your-meet-recordings-folder-id>`
 <!-- Find it: open the "Meet Recordings" folder in Drive; the ID is the last segment of the URL (drive.google.com/drive/folders/<ID>). Paste it here once during setup. -->
 
@@ -130,6 +132,8 @@ Some Drive recordings overlap with existing 1:1 notes files (an existing 1:1 fil
 2. If the meeting matches an existing 1:1 file by participant (e.g. a new recording with a person whose `<person>-1on1-notes.md` exists), **append** a new dated section rather than creating a parallel file. Order sections newest-first.
 3. Only create a new top-level file when the meeting is net-new and doesn't fit an existing 1:1 file.
 
+**⚠️ Drive shortcut target IDs are not stable over time — an ID-only dedup check produces false "gap" positives on historical audits.** A three-month deep audit found the same meeting logged under two *different* target IDs across two separate historical sync entries in the same index — the shortcut had been recreated at some point, silently changing its `targetId`. On a routine day-to-day `/update` run this doesn't matter (the cutoff window is narrow enough that IDs are fresh). But if you are ever doing a historical backfill or re-auditing a wide date range, **dedup by date + meeting title first, not ID alone** — check `Raw/meet-recordings-index.md` and the relevant person/topic file for a matching date before concluding something is missing. Treat an ID-only "NOT_FOUND" result across a wide historical window as a hypothesis to verify by title, not a confirmed gap.
+
 ### 1.5d. Naming convention for net-new files
 
 `meet-recording-<slug>-YYYY-MM-DD.md` — slug uses participant initials or topic, kebab-case.
@@ -162,6 +166,28 @@ If the index file does not yet exist, create it using the structure above (Direc
 ### 1.5g. Known limitation
 
 Shortcuts in this folder **are** resolvable — read their `shortcutDetails.targetId` via gws (1.5a/1.5b). The only true gap is a meeting that produced **no** Gemini doc at all (short / late-scheduled / strategic meetings sometimes don't trigger Gemini). When the calendar shows a known-attended meeting for a day but neither the folder scan nor Step 1.6 surfaces it, cross-check Gmail outbound for a decision-capture email before declaring "no new context."
+
+### 1.5h. Reconcile deferrals from the prior sync (required every run)
+
+Syncs have a track record of explicitly deferring a meeting to "next sync" and then silently dropping it — the promise gets made in one run's index entry and never checked against what the following run actually captured.
+
+Before finishing Step 1.5, close this loop:
+
+1. Read the **most recent sync entry** in `~/Documents/second-brain/Raw/meet-recordings-index.md` (the last `## Sync <date>` or `## Backfill` section).
+2. Scan it for any deferral language — phrases like "not read this run," "pick up next sync," "flag for next sync," "time-boxed," "index-only — not read." Extract every Drive ID/meeting named this way.
+3. For each one, confirm it was actually captured in **this** run (grep `Raw/*.md`, or check this run's own capture table). If yes, nothing to do — the loop closed.
+4. If a deferred item is still uncaptured, **capture it now regardless of how old it's become** — do not defer it a second time. Note in this run's index entry: `carried over from <prior sync date>, captured this run` (or, if it's now irrelevant/stale, explicitly say why it's being dropped rather than silently letting it disappear again).
+5. If this reconciliation finds nothing to carry over, say so explicitly in this run's index entry (`No deferrals carried over from the prior sync.`) so it's clear the check ran, not just that it found nothing.
+
+### 1.5i. Scan pinned folders beyond Meet Recordings
+
+Not every meeting-notes doc lives in the Meet Recordings folder. Google (or you) may organize notes into other dedicated folders that the folder-scan in 1.5a never touches. A wide-window audit found one such folder — a **"1:1s" folder** holding a **persistent, cumulative notes doc per person** (Gemini appends to the same doc across that person's recurring 1:1 series, rather than creating a new doc per meeting instance as it does in Meet Recordings). This is a structurally different pattern from 1.5a and needs its own handling:
+
+1. **List pinned folders here as you discover them** — one bullet each, with the folder ID and its doc-per-X pattern. Example entry:
+   - **"1:1s" folder** — `<your-1on1-folder-id>`. One doc per person (title pattern `<Person> / <You> 1:1 Meeting Notes` or `Notes - <Person> / <You>`), continuously updated. `modifiedTime` reflects the *last* update, not creation — a doc modified months ago may still be the single source of truth for that person's early 1:1s.
+2. On a **routine day-to-day `/update` run**, these folders rarely need a full re-scan — the per-meeting Meet Recordings capture (1.5a-1.5c) is the primary path and usually keeps person files current. Skip re-scanning every run; it's expensive relative to the marginal new content on a short cutoff window.
+3. On a **historical backfill or wide-window audit** (e.g., re-checking a multi-week or multi-month range), **do** scan them: `search_files` with `parentId = '<folder-id>'`, read each person's doc, and check whether its content (by date, not by whether *a* file exists for that person) is reflected in `Raw/<person>-1on1-notes.md`. A file existing for a person is not proof their content is complete — the persistent doc may contain earlier or additional dated sections not yet transcribed.
+4. New people found in these folders with no existing `Raw/` file at all are a strong signal of a genuine gap (a single audit surfaced three, all with real, substantive first-1:1 content that had never been captured anywhere). Create a new `<person>-1on1-notes.md` file per the existing 1:1 naming convention.
 
 ---
 
@@ -207,6 +233,16 @@ Google does **not** auto-file a shortcut for meetings you only attended. You can
 3. Creates only the missing shortcuts (idempotent)
 
 If you set this up, have `/update` call the same script rather than re-implementing shortcut creation inline, so the scheduled job and the manual sync never drift. Report its result line in the Step 7 summary.
+
+### 1.6e. Calendar-invite attachments — tertiary cross-check for wide-window audits only
+
+On a routine day-to-day `/update` run, the Meet Recordings folder scan (1.5) plus the Gmail fallback (1.6a-1.6c) catch essentially everything — skip this step. It exists for **historical backfills or wide-window audits**, where one audit found a large cross-functional contract-negotiation meeting that had **no Meet Recordings folder shortcut at all** and **no matching Gmail gemini-notes email in the standard search** — it only surfaced by directly enumerating calendar events and reading their `attachments` field for a "Notes by Gemini"/"Notes by Granola" link.
+
+If doing a wide-window audit:
+1. Pull calendar events for the window via `list_events` (the Calendar MCP truncates large ranges — pull in ~2-week chunks and extract with `jq`/python rather than reading the raw tool output).
+2. For each event, check `attachments[].title` for `Notes by Gemini` or `Notes by Granola`; extract the Drive doc ID from `attachments[].fileUrl`.
+3. Dedup against everything already known **by date + title, not ID alone** (see the ID-instability warning in 1.5c) — the overwhelming majority of hits will be meetings already captured under a different historical ID.
+4. Only chase down genuinely-unmatched titles. Expect most of what's left after dedup to be low-stakes single 1:1s or already-covered recurring meetings; a few will be real, high-value gaps.
 
 ---
 
@@ -429,11 +465,14 @@ Preserve the existing structure and formatting. Do not remove tasks marked Block
 Run these two commands in sequence:
 
 ```bash
-qmd collection add Documents/second-brain/raw
+qmd collection add ~/Documents/second-brain/Raw
 qmd update
+qmd embed
 ```
 
-If `qmd collection add` exits with "Collection 'raw' already exists" — this is expected. Treat it as success and proceed to `qmd update`. Any other failure should be reported clearly and not silently continued.
+`qmd update` indexes new/changed files but does not generate vector embeddings — `qmd embed` is required for semantic search to see the new content.
+
+If `qmd collection add` exits with "Collection 'Raw' already exists" — this is expected. Treat it as success and proceed to `qmd update`. Any other failure should be reported clearly and not silently continued.
 
 Skip this step and note it in the report if no files were written or modified in Steps 1–3.
 
@@ -462,7 +501,7 @@ date +%Y-%m-%dT%H:%M:%S%z | tee ~/Documents/second-brain/Raw/last-updated.md > ~
 
 Tell the user:
 - **Google Drive:** N files exported or updated (list titles)
-- **Meet Recordings:** N direct docs captured + N shortcuts resolved (call out any with empty Gemini summaries that were skipped, and whether any existing 1:1 files were appended-to vs. net-new files created)
+- **Meet Recordings:** confirm the Step 1.5 `gws` folder scan actually ran (not assumed-covered by Granola) — N direct docs captured + N shortcuts resolved (call out any with empty Gemini summaries that were skipped, and whether any existing 1:1 files were appended-to vs. net-new files created). Also state the Step 1.5h reconciliation result: either "no deferrals carried over" or what was carried over and captured.
 - **Gmail:** N threads summarized (date range covered)
 - **JIRA:** N tickets surfaced — list any with explicit asks; note how many were FYI-only (or that the step was skipped)
 - **Slack:** N threads summarized, from which channels

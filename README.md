@@ -5,7 +5,7 @@ A personal context-aware knowledge assistant that runs in Claude Code. Built by 
 ## What you get
 
 - **A KB skeleton** at `~/Documents/second-brain/` (`Knowledge/Context/` for your role + goals, `Knowledge/People/` for stakeholders, `Knowledge/Customers/` for customer accounts — one `.md` per customer, auto-updated on every sync, `Knowledge/Reference/` with Mapbox company + product context, `Raw/` as the synced source-of-truth cache, `Tasks/` for active work, `Templates/` for reusable PM docs)
-- **15 skills** packaged as a local Claude Code plugin: `/update`, `/learn`, `/sync`, `/retro`, `/morning-brief`, `/my-voice`, `/meeting-prep`, `/weekly-update`, `/prd-write`, `/prfaq-write` (draft any PRFAQ section + critique for unsupported claims and weak arguments), `/synthesize-research`, `/strategy-doc-review`, `/cherie-reviewer` (pressure-test OP/strategy docs against Cherie Wong's review gates before sharing), `/consolidate-profile` (roll dated updates in a stakeholder profile into its canonical sections), `/llm-council` (pressure-test any decision through 5 AI advisors with anonymous peer review, per Karpathy's LLM Council method)
+- **16 skills** packaged as a local Claude Code plugin: `/update`, `/learn`, `/sync`, `/granola-sync` (copy Granola meeting notes into Drive, split work vs. personal, named to match the calendar event), `/retro`, `/morning-brief`, `/my-voice`, `/meeting-prep`, `/weekly-update`, `/prd-write`, `/prfaq-write` (draft any PRFAQ section + critique for unsupported claims and weak arguments), `/synthesize-research`, `/strategy-doc-review`, `/cherie-reviewer` (pressure-test OP/strategy docs against Cherie Wong's review gates before sharing), `/consolidate-profile` (roll dated updates in a stakeholder profile into its canonical sections), `/llm-council` (pressure-test any decision through 5 AI advisors with anonymous peer review, per Karpathy's LLM Council method)
 - **A UserPromptSubmit hook** that searches your KB on every prompt and injects relevant snippets so Claude has context without you having to paste it
 - **An auto-memory system** that captures preferences, gotchas, and project facts across sessions
 
@@ -70,7 +70,7 @@ mapbox-second-brain/
     ├── .claude-plugin/
     │   ├── marketplace.json
     │   └── plugin.json
-    ├── skills/           # 15 skills (SKILL.md per skill)
+    ├── skills/           # 16 skills (SKILL.md per skill)
     └── hooks/
         ├── hooks.json
         └── context-enrichment.sh
@@ -80,7 +80,7 @@ mapbox-second-brain/
 
 - **Morning:** the cloud morning-brief routine DMs your daily brief to you on Slack at 7am (Gmail send is disabled by Mapbox org policy). Read it.
 - **During the day:** Claude Code prompts get auto-enriched with KB context via the hook. You don't have to do anything.
-- **End of day:** `/sync` (runs `/update` + `/learn`). Pulls fresh email/Slack/Drive into `Raw/`, captures session learnings to memory, refreshes the Drive context doc the morning-brief routine reads from.
+- **End of day:** `/sync` (runs `/granola-sync` + `/update` + `/learn`). Copies Granola meeting notes into Drive, pulls fresh email/Slack/Drive into `Raw/`, captures session learnings to memory, refreshes the Drive context doc the morning-brief routine reads from.
 - **End of month:** `/retro` for a structured reflection.
 
 ## Customizing it
