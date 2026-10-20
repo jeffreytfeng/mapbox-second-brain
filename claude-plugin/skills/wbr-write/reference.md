@@ -58,7 +58,18 @@ Aggregations to run (filter `SERVICE_FAMILY` to the org's set):
 - URL filters work on the hash route: `#/site/<your-tableau-site>/views/<Workbook>/<View>?Service%20Group=search`. Clicking checkboxes in Tableau filter dropdowns is unreliable.
 - The chart is wider than the viewport. Scroll right on the chart to reach the latest weeks.
 - `.csv` export of a dashboard returns empty. Read values from labelled bars.
-- **Active Developers > Existing vs New Active Developer Volumes** can hang on "Computing models" indefinitely, with or without URL filters. Give it about 60s, then skip it and list it as an open check. Active Developer Trends (30d by service) loads, but it is a different metric from the "Active Developer Accounts" figure prior WBRs quote. Don't substitute one for the other.
+### Active Developer Accounts (required line, just before Biggest Movers)
+
+Source: **Active Developers > Existing vs New Active Developer Volumes**. "Active Developer Accounts" is the **Existing Active** series, and "Newly Active Developer Accounts" is the **Newly Active** series, both for the latest weekly period. This is a different metric from Active Developer Trends (30d by service), so never substitute that one.
+
+How to get it:
+1. **Don't open it with URL filters.** Hash-route params (`?Service%20Org=search`) leave it stuck on "Computing models". Instead, open **Active Developer Trends** first, let it load, then click the **Existing vs New Active Develop...** tab.
+2. **Service Org filter:** open the dropdown and *uncheck* the other orgs one at a time, waiting about 6s after each click. Clicking "(All)" then a single org is unreliable. Zoom on the dropdown to confirm it reads only the target org.
+3. **View Period:** change it from Monthly to **Weekly**.
+4. **Read the values:** Total Active Developers shows labels for each period. Zoom on the right edge to read the latest week's value and its WoW % for both series. Labels for some intermediate weeks are hidden, which is fine because you only need the latest.
+5. **Find the driver:** scroll to "Active Accounts by Service and Type" and note the service with the biggest Existing or Newly Active change, for the "mostly driven by ..." clause.
+
+If it still won't load after about 60s, write the line with a highlighted [VERIFY: dashboard did not load] instead of dropping it.
 
 ## 4. Building the Google Doc
 

@@ -38,7 +38,8 @@ Keep a task list (update_plan) covering the steps below.
 From the Mode scorecard via Claude in Chrome (reference.md §1-2):
 1. Screenshot the area's card and save it to disk. Its total, revenue categories and service families (each with REV, CHG, WoW, YoY) are the headline numbers.
 2. Use the API aggregation for weekly totals, top account movers per service family, and the **restatement check** against last week's run.
-3. Optional and supporting only: Tableau Weighted Usage, Product Business Metrics, Service Revenue and Active Developers (reference.md §3). If a dashboard won't load in about 60s, skip it and log an open check.
+3. **Active Developer Accounts (required):** from Tableau Existing vs New Active Developer Volumes, filtered to the area's Service Org with View Period = Weekly (reference.md §3). Read the latest week's Existing Active and Newly Active counts with WoW %, plus the service that drove the change.
+4. Optional and supporting only: Tableau Weighted Usage, Product Business Metrics and Service Revenue. If a dashboard won't load in about 60s, skip it and log an open check.
 
 Sanity-check: the area's family totals should sum to the card total.
 
@@ -68,7 +69,12 @@ When it returns, spot-check the 2-3 heaviest claims yourself (reference.md §6).
 - Add one sentence isolating the biggest account ("Excluding X, <area> was ...") when one account drives most of the move.
 - If the restatement check fired, add a highlighted note giving the old and new prior-week values.
 - Card image.
-- Standard lines from prior weeks (e.g. Active Developer Accounts) if the data loaded.
+- **Active Developer lines**, always, as two lines placed just before Biggest Movers:
+  ```
+  Active Developer Accounts: <N> (+X% WoW)
+  Newly Active Developer Accounts: <N> (+X% WoW), mostly driven by <service> (<count>, +X% WoW).
+  ```
+  If the dashboard failed, keep the lines with a highlighted [VERIFY] rather than omitting them.
 - **Biggest Movers** grouped by service family: 2-5 per family. Format: `**Account:** $X (+/-$X, +/-X% WoW, from $Y). Cause.` If the cause is unknown, highlight it as unknown, never invent one. Close the loop on anything last week predicted.
 
 **Opportunities, Risks, and Challenges:** 4-6 items. For each:
