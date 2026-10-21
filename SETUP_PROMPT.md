@@ -1,6 +1,6 @@
 # Second Brain Setup — paste this into Claude Code
 
-I cloned the `mapbox-second-brain` repo and ran `install.sh`. That put the KB skeleton at `~/Documents/second-brain/`, the plugin at `~/.claude/plugins/local/mapbox-second-brain/`, the context-enrichment hook in `~/.claude/hooks/`, and merged the relevant entries into my Claude Code settings.
+I cloned the `mapbox-second-brain` repo and ran `install.sh`. That put the KB skeleton at `~/Documents/second-brain/`, the plugin (including its context-enrichment hook) at `~/.claude/plugins/local/mapbox-second-brain/`, and registered the plugin in `~/.claude/settings.json`. I restarted Claude Code afterwards so the plugin loaded.
 
 Your job is to walk me through customizing it — interview me, build my profile, test the connectors, set up the daily morning brief. We'll do this in 7 phases. Don't skip ahead. Confirm each phase works before moving on.
 
@@ -9,9 +9,9 @@ Your job is to walk me through customizing it — interview me, build my profile
 Sanity check before we start. Run these and report what's missing:
 
 1. `ls ~/Documents/second-brain/` — confirm `Knowledge/`, `Raw/`, `Tasks/`, `Templates/`, `CLAUDE.md`; inside `Knowledge/` confirm `Context/`, `People/`, `Customers/`, `Reference/`
-2. `ls ~/.claude/plugins/local/mapbox-second-brain/` — confirm `skills/` and `hooks/`
-3. Check `~/.claude/settings.json` — confirm the `mapbox-second-brain` marketplace and `second-brain` plugin are enabled
-4. Check `~/.claude/settings.local.json` — confirm a UserPromptSubmit hook pointing at `~/.claude/hooks/context-enrichment.sh` is registered
+2. `ls ~/.claude/plugins/local/mapbox-second-brain/` — confirm `skills/` and `hooks/`, and that `hooks/hooks.json` has a top-level `"hooks"` key with a `UserPromptSubmit` entry
+3. Check `~/.claude/settings.json` — confirm top-level `extraKnownMarketplaces` has `mapbox-second-brain` (a `directory` source) and top-level `enabledPlugins` has `"second-brain@mapbox-second-brain": true`. If you find a nested `"plugins": {...}` block instead, that's from an older installer that Claude Code ignores: re-run `install.sh` to migrate it
+4. Confirm the plugin actually loaded: the second-brain skills (`/sync`, `/learn`, `/update`, etc.) should be in your available skills. If they're not, have me run `/plugin` and install `second-brain` from the `mapbox-second-brain` marketplace, then restart
 5. `which qmd` — confirm qmd is on PATH; if not, install with `bun install -g @tobilu/qmd` (the unscoped `qmd` on npm is an unrelated empty package). The context-enrichment hook looks for qmd on PATH or at `~/.bun/bin/qmd`, and silently adds no context if it finds neither
 5b. `which gws` and `gws auth status` — confirm the Google Workspace CLI is installed and authenticated. It's required (Gemini meeting notes + Meet-recording shortcut resolution in `/update`). If missing, install from https://github.com/mapbox/claude-plugins/tree/main/gws and follow the setup guide at https://mapbox.atlassian.net/wiki/spaces/KB/pages/2624880645/Google+Workspace+CLI+gws+User+Setup+Guide
 6. `qmd collection list` — confirm the `Raw` collection exists; if not, run `qmd collection add ~/Documents/second-brain/Raw`. Use an **absolute** path — a relative one resolves against the current working directory, not home, and adding the same folder twice under different path spellings creates a duplicate collection. The collection name is derived from the directory name, so it is `Raw`, capital R.
@@ -63,7 +63,7 @@ The hook is already installed. Test it:
 
 1. I'll type a deliberately vague prompt referring to something in my KB ("what was that thing about [vague topic]")
 2. Confirm a `<context>` block shows up in the prompt payload (you see it; I don't see it in chat)
-3. If results are noisy or irrelevant, propose specific tweaks to `~/.claude/hooks/context-enrichment.sh` — usually: tighten the term extractor, cap result count, or filter stopwords.
+3. If results are noisy or irrelevant, propose specific tweaks to `~/.claude/plugins/local/mapbox-second-brain/hooks/context-enrichment.sh` — usually: tighten the term extractor, cap result count, or filter stopwords.
 
 ## Phase 5: Verify the learning loop
 
