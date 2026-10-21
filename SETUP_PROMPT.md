@@ -12,7 +12,7 @@ Sanity check before we start. Run these and report what's missing:
 2. `ls ~/.claude/plugins/local/mapbox-second-brain/` — confirm `skills/` and `hooks/`
 3. Check `~/.claude/settings.json` — confirm the `mapbox-second-brain` marketplace and `second-brain` plugin are enabled
 4. Check `~/.claude/settings.local.json` — confirm a UserPromptSubmit hook pointing at `~/.claude/hooks/context-enrichment.sh` is registered
-5. `which qmd` — confirm qmd is on PATH; if not, install with `bun install -g @tobilu/qmd` (the unscoped `qmd` on npm is an unrelated empty package)
+5. `which qmd` — confirm qmd is on PATH; if not, install with `bun install -g @tobilu/qmd` (the unscoped `qmd` on npm is an unrelated empty package). The context-enrichment hook looks for qmd on PATH or at `~/.bun/bin/qmd`, and silently adds no context if it finds neither
 5b. `which gws` and `gws auth status` — confirm the Google Workspace CLI is installed and authenticated. It's required (Gemini meeting notes + Meet-recording shortcut resolution in `/update`). If missing, install from https://github.com/mapbox/claude-plugins/tree/main/gws and follow the setup guide at https://mapbox.atlassian.net/wiki/spaces/KB/pages/2624880645/Google+Workspace+CLI+gws+User+Setup+Guide
 6. `qmd collection list` — confirm the `Raw` collection exists; if not, run `qmd collection add ~/Documents/second-brain/Raw`. Use an **absolute** path — a relative one resolves against the current working directory, not home, and adding the same folder twice under different path spellings creates a duplicate collection. The collection name is derived from the directory name, so it is `Raw`, capital R.
 
@@ -87,7 +87,7 @@ The morning brief runs as a remote scheduled agent (NOT a local cron). It needs 
 3. Run `/schedule` and create:
    - **Name:** "Morning Brief"
    - **Cron:** convert "7am my local time, weekdays" to UTC. Confirm the conversion with me before creating. Reminder: cron is UTC, so DST shifts will require updating the cron twice a year.
-   - **Model:** claude-sonnet-4-6
+   - **Model:** claude-sonnet-5-5
    - **Connectors:** Gmail, Google Calendar, Google Drive, Slack
    - **Prompt:** based on `~/.claude/plugins/local/mapbox-second-brain/skills/morning-brief/SKILL.md`, with these overrides for the cloud context:
      - **Replace step 0 (Load context)** with: "Search Drive for files titled `<my-name> — Second Brain Context (Morning Brief)` and read the most recently modified one — this is the canonical source. The agent has NO local filesystem access, so this Drive doc replaces local `Tasks/active.md`, `goals.md`, `role-context.md`, etc."
@@ -116,7 +116,7 @@ Tell me how to live with this thing:
 - Known gotchas:
   - Slack MCP needs `/mcp` OAuth — auth tools in the deferred list ≠ authenticated
   - Drive `modifiedTime` filters need full ISO 8601 + `Z` (e.g., `2026-04-29T03:52:00.000Z`)
-  - `qmd collection add Raw` (capital R) creates a duplicate collection — pass lowercase or skip after first run
+  - Add the qmd collection once with the absolute path: `qmd collection add ~/Documents/second-brain/Raw` (it is named `Raw`). A relative path, or adding the same folder again under a second spelling, creates a duplicate collection
   - Remote cloud routines have NO local filesystem access — they read from Drive only
   - macOS `launchctl` calls are blocked by the Claude Code harness — if needed, ask me to run them via `! command` in the prompt
 

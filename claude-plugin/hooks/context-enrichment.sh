@@ -2,11 +2,27 @@
 # Context enrichment hook — runs before every prompt
 # Searches the KB for terms in the user's message and injects results as context
 
-export PATH="$HOME/bin:/usr/local/bin:$PATH"
-QMD="$HOME/bin/qmd"
+export PATH="$HOME/.bun/bin:$HOME/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"
+
+# Resolve qmd: PATH first, then common install locations
+# (`bun install -g @tobilu/qmd` puts it at ~/.bun/bin/qmd)
+QMD=$(command -v qmd 2>/dev/null)
+if [ -z "$QMD" ]; then
+  for candidate in "$HOME/.bun/bin/qmd" "$HOME/bin/qmd" /opt/homebrew/bin/qmd /usr/local/bin/qmd; do
+    if [ -x "$candidate" ]; then
+      QMD="$candidate"
+      break
+    fi
+  done
+fi
 
 # Read the full payload from stdin
 PAYLOAD=$(cat)
+
+# No qmd found: nothing to search, exit quietly
+if [ -z "$QMD" ]; then
+  exit 0
+fi
 
 # Extract prompt text from the JSON payload
 PROMPT=$(echo "$PAYLOAD" | python3 -c "
