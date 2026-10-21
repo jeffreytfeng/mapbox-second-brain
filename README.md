@@ -70,7 +70,7 @@ mapbox-second-brain/
     ├── .claude-plugin/
     │   ├── marketplace.json
     │   └── plugin.json
-    ├── skills/           # 18 skills (SKILL.md per skill)
+    ├── skills/           # 19 skills (SKILL.md per skill)
     └── hooks/
         ├── hooks.json
         └── context-enrichment.sh
@@ -94,6 +94,7 @@ If you change a skill, restart your Claude Code session for the change to take e
 - **Slack MCP requires OAuth.** Showing up in the connector list doesn't mean it's authenticated. Run `/mcp` and complete the browser flow.
 - **Drive `modifiedTime` needs full ISO 8601 with `Z`.** `2026-04-29T03:52:00.000Z`, not `2026-04-29T03:52:00`.
 - **`qmd collection add` needs an absolute path.** A relative path resolves against the current working directory, not home, so adding the same folder twice under different spellings creates a duplicate collection. Use `qmd collection add ~/Documents/second-brain/Raw`; the resulting collection is named `Raw`.
+- **Hook adds no context?** The hook exits quietly if it cannot find `qmd`. Check that it resolves: `command -v qmd`, or that `~/.bun/bin/qmd` exists.
 - **`qmd update` does not embed.** It indexes new and changed files but generates no vectors, so `qmd vsearch` stays blind to them until you also run `qmd embed`.
 - **Cloud routines have no local filesystem access.** That's why the `/learn` skill pushes a context doc to Google Drive — it's the bridge.
 - **DST.** Cron expressions are UTC. When DST starts/ends, update the morning-brief cron at `https://claude.ai/code/routines/<routine-id>` or it'll drift one hour.
