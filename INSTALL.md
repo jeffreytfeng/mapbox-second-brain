@@ -60,77 +60,65 @@ ls ~/.claude/plugins/local/mapbox-second-brain
 
 ---
 
-## 4. Install the context-enrichment hook
+## 4. Make the context-enrichment hook executable
 
-The hook script is what injects KB search results into every prompt. Claude Code looks for it at `~/.claude/hooks/`.
+The hook ships inside the plugin: `hooks/hooks.json` registers `hooks/context-enrichment.sh` as a `UserPromptSubmit` hook, and Claude Code loads it automatically when the plugin is enabled. No separate hook registration is needed.
 
 ```bash
-mkdir -p ~/.claude/hooks
-cp claude-plugin/hooks/context-enrichment.sh ~/.claude/hooks/context-enrichment.sh
-chmod +x ~/.claude/hooks/context-enrichment.sh
+chmod +x ~/.claude/plugins/local/mapbox-second-brain/hooks/context-enrichment.sh
 ```
 
-> The hook calls `qmd` (a local-first vector search tool). If `qmd` isn't installed, the hook exits silently — nothing breaks. Install qmd later when you're ready: `bun install -g @tobilu/qmd` (https://github.com/tobi/qmd)
+> The hook calls `qmd` (a local-first search tool). If `qmd` isn't installed, the hook exits silently and nothing breaks, but you get no KB context. Install it with `bun install -g @tobilu/qmd` (https://github.com/tobi/qmd).
 
 ---
 
 ## 5. Register the marketplace + plugin in `~/.claude/settings.json`
 
-Open `~/.claude/settings.json` (create it if missing). Make sure the file is valid JSON. Merge in the entries below — do **not** overwrite the entire file:
+Open `~/.claude/settings.json` (create it if missing). Make sure the file is valid JSON. Merge in these **top-level** keys, and do **not** overwrite the entire file:
 
 ```json
 {
-  "plugins": {
-    "marketplaces": {
-      "mapbox-second-brain": {
-        "type": "local",
-        "source": "/Users/<YOUR-USERNAME>/.claude/plugins/local/mapbox-second-brain"
+  "extraKnownMarketplaces": {
+    "mapbox-second-brain": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/<YOUR-USERNAME>/.claude/plugins/local/mapbox-second-brain"
       }
-    },
-    "enabledPlugins": {
-      "second-brain@mapbox-second-brain": true
     }
+  },
+  "enabledPlugins": {
+    "second-brain@mapbox-second-brain": true
   }
 }
 ```
 
-Replace `<YOUR-USERNAME>` with your macOS username (run `whoami` to check). If `~/.claude/settings.json` already has a `plugins` object, just add the new keys under `marketplaces` and `enabledPlugins` — keep everything else untouched.
+Replace `<YOUR-USERNAME>` with your macOS username (run `whoami` to check); the path must be absolute. If the file already has `extraKnownMarketplaces` or `enabledPlugins`, add these entries inside them and keep everything else untouched.
+
+If you have the `claude` CLI, you can do this step with commands instead:
+
+```bash
+claude plugin marketplace add ~/.claude/plugins/local/mapbox-second-brain --scope user
+claude plugin install second-brain@mapbox-second-brain --scope user
+```
 
 ---
 
-## 6. Register the hook in `~/.claude/settings.local.json`
+## 6. (Upgrading only) Remove old installer entries
 
-The hook needs a `UserPromptSubmit` entry in `settings.local.json` so Claude Code runs it before every prompt. Open the file (create if missing) and merge:
-
-```json
-{
-  "hooks": {
-    "UserPromptSubmit": [
-      {
-        "matcher": "",
-        "hooks": [
-          { "type": "command", "command": "~/.claude/hooks/context-enrichment.sh" }
-        ]
-      }
-    ]
-  }
-}
-```
-
-If `UserPromptSubmit` already has entries, append yours — don't replace the array.
+Older versions of `install.sh` wrote a nested `"plugins": { "marketplaces": ..., "enabledPlugins": ... }` block into `~/.claude/settings.json` and a `UserPromptSubmit` hook pointing at `~/.claude/hooks/context-enrichment.sh` into `~/.claude/settings.local.json`. Claude Code doesn't read either one. Delete those entries (or just re-run `install.sh`, which migrates them for you). If you customized `~/.claude/hooks/context-enrichment.sh`, copy your changes into the plugin's copy at `~/.claude/plugins/local/mapbox-second-brain/hooks/`.
 
 ---
 
 ## 7. Verify
 
-Restart Claude Code, then open a session at `~/Documents/second-brain/`:
+Quit and reopen Claude Code (plugins and hooks load at session start), then open a session at `~/Documents/second-brain/`:
 
 ```bash
 cd ~/Documents/second-brain
 claude
 ```
 
-You should see the `second-brain` plugin's slash commands available (`/morning-brief`, `/sync`, `/learn`, `/retro`, etc.).
+You should see the `second-brain` plugin's slash commands available (`/morning-brief`, `/sync`, `/learn`, `/retro`, etc.). If they're missing, run `/plugin` and install `second-brain` from the `mapbox-second-brain` marketplace.
 
 ---
 
@@ -147,7 +135,6 @@ After the interview, run `/my-voice` once you have a few real writing samples in
 ```bash
 rm -rf ~/Documents/second-brain
 rm -rf ~/.claude/plugins/local/mapbox-second-brain
-rm ~/.claude/hooks/context-enrichment.sh
-# Manually remove the marketplace/plugin entries from ~/.claude/settings.json
-# and the UserPromptSubmit entry from ~/.claude/settings.local.json
+# Manually remove the mapbox-second-brain entry from extraKnownMarketplaces and
+# second-brain@mapbox-second-brain from enabledPlugins in ~/.claude/settings.json
 ```

@@ -17,9 +17,24 @@ Add the four MCP connectors at [claude.ai/customize/connectors](https://claude.a
 - Google Calendar
 - Slack
 
-Adding the connector at claude.ai is a one-time prereq; the OAuth handshake (run via `/mcp` in Claude Code) is part of the setup interview.
+Adding the connector at claude.ai is a one-time prereq; the OAuth handshake (run via `/mcp` in the Claude Code terminal, or from the connector settings in the Claude desktop app) is part of the setup interview.
 
-## Three-step setup
+## Easiest: let Claude install it
+
+Open Claude Code in any folder and paste this. Claude checks prerequisites, clones the repo, reads and runs `install.sh`, and tells you when to restart. It asks before installing anything.
+
+```text
+Help me install https://github.com/jeffreytfeng/mapbox-second-brain. Ask before installing anything or changing files outside the clone.
+
+1. Check the prerequisites in its README (macOS, python3, bun, qmd, gws). Tell me what's missing, offer to install bun and qmd, and walk me through installing and authenticating gws (the auth step opens my browser).
+2. Ask me to confirm I've added the Google Drive, Gmail, Google Calendar and Slack connectors at claude.ai/customize/connectors. You can't do this part for me.
+3. If ~/Documents/second-brain already exists, stop and ask me before going further.
+4. Clone the repo to ~/mapbox-second-brain, read install.sh and summarize what it will change, then run it.
+5. Check that ~/.claude/settings.json now has mapbox-second-brain under extraKnownMarketplaces and second-brain@mapbox-second-brain under enabledPlugins.
+6. Tell me to quit and reopen Claude Code in ~/Documents/second-brain (plugins load at session start) and paste the contents of SETUP_PROMPT.md to start the guided setup.
+```
+
+## Or install it yourself
 
 ```bash
 # 1. Clone
@@ -29,10 +44,10 @@ cd mapbox-second-brain
 # 2. Install
 ./install.sh
 
-# 3. Open Claude Code at ~/Documents/second-brain/ and paste the contents of SETUP_PROMPT.md
+# 3. Quit and reopen Claude Code at ~/Documents/second-brain/, then paste the contents of SETUP_PROMPT.md
 ```
 
-`install.sh` copies the skeleton into `~/Documents/second-brain/`, installs the plugin into `~/.claude/plugins/local/mapbox-second-brain/`, copies the hook to `~/.claude/hooks/`, and safe-merges marketplace + plugin entries into your Claude settings. It refuses to overwrite an existing `~/Documents/second-brain/` — back up first if you have one.
+`install.sh` copies the skeleton into `~/Documents/second-brain/`, installs the plugin (skills plus the context-enrichment hook) into `~/.claude/plugins/local/mapbox-second-brain/`, and safe-merges the marketplace + plugin entries into `~/.claude/settings.json`. It warns about missing prerequisites and never overwrites an existing `~/Documents/second-brain/` or skills you've customized, so it's safe to re-run.
 
 `SETUP_PROMPT.md` is a paste-into-Claude-Code interview that walks you through customization in 7 phases (verify install → interview → connect MCP → distill context → validate hook → verify learning loop → set up morning brief). Phase 0 sanity-checks the install before doing anything destructive.
 
@@ -85,12 +100,13 @@ mapbox-second-brain/
 
 ## Customizing it
 
-Everything is meant to be modifiable. The skills are short, dependency-free SKILL.md files — open `~/.claude/plugins/local/mapbox-second-brain/skills/<skill>/SKILL.md` and edit. The hook is one shell script. The KB structure is just markdown files in folders. Nothing magic.
+Everything is meant to be modifiable. The skills are short, dependency-free SKILL.md files — open `~/.claude/plugins/local/mapbox-second-brain/skills/<skill>/SKILL.md` and edit. The hook is one shell script at `~/.claude/plugins/local/mapbox-second-brain/hooks/context-enrichment.sh`. The KB structure is just markdown files in folders. Nothing magic.
 
 If you change a skill, restart your Claude Code session for the change to take effect.
 
 ## Known gotchas
 
+- **Installed before October 2026?** Older versions of `install.sh` wrote plugin and hook settings Claude Code doesn't read, so the skills and hook may never have loaded. Pull the latest repo and re-run `./install.sh`: it migrates the settings and leaves your KB and skills alone.
 - **Slack MCP requires OAuth.** Showing up in the connector list doesn't mean it's authenticated. Run `/mcp` and complete the browser flow.
 - **Drive `modifiedTime` needs full ISO 8601 with `Z`.** `2026-04-29T03:52:00.000Z`, not `2026-04-29T03:52:00`.
 - **`qmd collection add` needs an absolute path.** A relative path resolves against the current working directory, not home, so adding the same folder twice under different spellings creates a duplicate collection. Use `qmd collection add ~/Documents/second-brain/Raw`; the resulting collection is named `Raw`.
